@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import logo from "/src/assets/images/logoo.jpg";
+import logo from "/src/assets/images/trans.png";
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -46,7 +46,9 @@ const Title = styled(motion.div)`
   img {
     width: 100%;
     height: auto;
-    max-width: 95%; /* Increased from 80% */
+    max-width: 100%; /* Increased from 80% */
+     margin-bottom: 3rem;
+      margin-top: 6rem;
     object-fit: contain;
   }
 

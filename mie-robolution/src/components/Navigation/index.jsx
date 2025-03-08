@@ -59,6 +59,7 @@ const Menu = styled(motion.div)`
   backdrop-filter: blur(10px);
 `
 
+
 const MenuItem = styled(motion.a)`
   display: block;
   font-family: ${({ theme }) => theme.fonts.heading};
@@ -68,11 +69,17 @@ const MenuItem = styled(motion.a)`
   padding: 1rem 0;
   transition: color 0.3s ease;
   cursor: pointer;
-  
+
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }
+
+  /* Add extra margin below "Contact" */
+  &:nth-last-of-type(2) {
+    margin-bottom: 2rem; /* Adjust spacing */
+  }
 `
+
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -85,8 +92,9 @@ const Navigation = () => {
     { title: 'Gallery', href: '#gallery' },
     { title: 'Sponsors', href: '#sponsors' },
     { title: 'Team', href: '#team' },
+    { title: 'Campus Ambassador', href: '#ambassador' },
     { title: 'Contact', href: '#contact' },
-    { title: 'Campus Ambassador', href: '#ambassador' }
+    
   ]
 
   const menuVariants = {
