@@ -1,10 +1,7 @@
 // src/components/About/index.jsx
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import logo from "/src/assets/images/logo.jpg";
-
-<img src={logo} alt="MIE ROBOlution" />
-
+import logo from "/src/assets/images/about.jpg";
 
 const AboutSection = styled.section`
   padding: 5rem 5%;
@@ -31,6 +28,7 @@ const TextContent = styled.div`
   p {
     margin-bottom: 1.5rem;
     line-height: 1.6;
+    text-align: justify;
   }
 `
 
@@ -48,6 +46,13 @@ const StatItem = styled(motion.div)`
     font-size: 3rem;
     color: ${({ theme }) => theme.colors.primary};
     font-family: ${({ theme }) => theme.fonts.heading};
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 0;
   }
 `
 
@@ -58,20 +63,61 @@ const ImageContainer = styled(motion.div)`
   }
 `
 
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+`
+
+const Button = styled(motion.a)`
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-family: ${({ theme }) => theme.fonts.heading};
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.dark};
+  }
+`
+
 const About = () => {
   return (
     <AboutSection id="about">
       <Content>
         <TextContent>
-          <h2>About MIE ROBOlution</h2>
+          <h2>About CUET MIE & MIE ROBOlution1.0</h2>
           <p>
-            MIE ROBOlution 1.0 is the premier robotics and automation event at CUET,
-            bringing together innovative minds and cutting-edge technology.
+          The MIE Department at CUET, established in 2015, addresses the growing demand for automation and industrial innovation in Bangladesh. Integrating mechanical, electronics, and control systems, it prepares 30 students annually for careers in precision engineering, automation, and industrial research. With a strong curriculum and advanced labs, MIE aims to be a hub for innovation and industry-driven research, producing globally competitive engineers.
           </p>
           <p>
-            Our mission is to foster innovation, encourage collaboration, and showcase
-            the latest advancements in robotics and automation.
+          MIE ROBOlution 1.0 is a first-of-its-kind robotics and automation festival hosted by CUET MIE. It is designed to bring together the brightest minds, challenging them in robotics competitions. The event aims to bridge academia and industry, inspiring the next generation of engineers to take on global technological challenges.
+
+With a grand prize pool of <b>330,000 BDT</b>, this competition is set to be a groundbreaking event in Bangladesh's robotics and automation landscape.
           </p>
+          
+          <ButtonContainer>
+            <Button 
+              href="https://www.facebook.com/events/9420448124644824"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              EVENT ON FACEBOOK
+            </Button>
+            
+            <Button 
+              href="https://www.cuet.ac.bd/dept/mie" 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              MORE ON DEPARTMENT
+            </Button>
+          </ButtonContainer>
           
           <Stats>
             <StatItem
@@ -99,8 +145,7 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-<img src={logo} alt="MIE ROBOlution" />
-
+          <img src={logo} alt="MIE ROBOlution" />
         </ImageContainer>
       </Content>
     </AboutSection>

@@ -69,6 +69,11 @@ const galleryImages = [
   new URL('/src/assets/images/e1.jpg', import.meta.url).href,
   new URL('/src/assets/images/e2.jpg', import.meta.url).href,
   new URL('/src/assets/images/e3.jpg', import.meta.url).href,
+  new URL('/src/assets/images/cuett.jpeg', import.meta.url).href,
+  new URL('/src/assets/images/mie.jpg', import.meta.url).href,
+  new URL('/src/assets/images/s5.jpg', import.meta.url).href,
+  new URL('/src/assets/images/e4.jpeg', import.meta.url).href,
+  new URL('/src/assets/images/miee.jpg', import.meta.url).href,
 ]
 
 const Gallery = () => {

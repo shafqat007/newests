@@ -95,7 +95,7 @@ const CampusAmbassador = () => {
 
 
         <RegisterButton
-          href="#"
+          href="https://forms.gle/3MacqsT8R5jRbsCS8"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

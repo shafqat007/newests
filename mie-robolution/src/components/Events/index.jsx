@@ -57,62 +57,61 @@ const Button = styled.a`
 const events = [
   {
     title: 'Technical Seminar',
-    description: 'Industry experts share insights and knowledge',
-    registerLink: '#',
-    rulebookLink: '#'
+    description: 'Industry experts share insights and knowledge [ No registration required ]',
+    detailsLink: 'https://www.facebook.com/events/9420448124644824', // Replace with actual Facebook link
   },
   {
     title: 'Line Following Robot',
     description: 'Test your robot precision and speed',
-    registerLink: '#',
+    registerLink: 'https://forms.gle/PsA17ZVVu6hhZxyMA',
     rulebookLink: '#'
   },
   {
     title: 'Robo Soccer',
     description: 'Unleash your robot agility',
-    registerLink: '#',
+    registerLink: 'https://forms.gle/yxBbx14ppuBPAKyTA',
     rulebookLink: '#'
   },
   {
     title: 'Project Presentation',
     description: 'Showcase your groundbreaking ideas',
-    registerLink: '#',
+    registerLink: 'https://forms.gle/QCdVDivvf7EkaU8c6',
     rulebookLink: '#'
   },
   {
     title: 'CAD Contest',
     description: 'Test your design skills',
-    registerLink: '#',
+    registerLink: 'https://forms.gle/zh5UohCdRy66Xyq97',
     rulebookLink: '#'
   },
   {
     title: 'Techathon',
     description: 'Solve real-world challenges',
-    registerLink: '#',
+    registerLink: 'https://forms.gle/BBJu3hKrCN8JjWkm9',
     rulebookLink: '#'
   },
   {
     title: 'Logo Design Contest',
     description: 'Show your creative prowess',
-    registerLink: '#',
+    registerLink: 'https://forms.gle/QNsrHGox3EsSLSwn7',
     rulebookLink: '#'
   },
   {
     title: 'Poster Presentation',
     description: 'Present your research visually',
-    registerLink: '#',
+    registerLink: 'https://forms.gle/fmXA5gfS1eJxsjYq6',
     rulebookLink: '#'
   },
   {
     title: 'Gaming Contest',
-    description: 'Compete in exciting games',
-    registerLink: '#',
+    description: 'Compete in exciting games  [ Intra CUET ]',
+    registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
     rulebookLink: '#'
   },
   {
     title: 'Chess Competition',
-    description: 'Strategic battles of minds',
-    registerLink: '#',
+    description: 'Strategic battles of minds  [ Intra CUET ]',
+    registerLink: 'https://forms.gle/NKwbKdrKd2t2CJC69',
     rulebookLink: '#'
   }
 ]
@@ -133,8 +132,14 @@ const Events = () => {
             <EventTitle>{event.title}</EventTitle>
             <p>{event.description}</p>
             <ButtonGroup>
-              <Button href={event.registerLink} primary>Register</Button>
-              <Button href={event.rulebookLink}>Rulebook</Button>
+              {event.detailsLink ? (
+                <Button href={event.detailsLink} primary>Details</Button>
+              ) : (
+                <>
+                  <Button href={event.registerLink} primary>Register</Button>
+                  <Button href={event.rulebookLink}>Rulebook</Button>
+                </>
+              )}
             </ButtonGroup>
           </EventCard>
         ))}
@@ -143,4 +148,4 @@ const Events = () => {
   )
 }
 
-export default Events
+export default Events;
