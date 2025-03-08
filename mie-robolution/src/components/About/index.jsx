@@ -29,6 +29,17 @@ const TextContent = styled.div`
     margin-bottom: 1.5rem;
     line-height: 1.6;
     text-align: justify;
+    
+    /* Fix for consistent padding on mobile devices */
+    @media (max-width: 768px) {
+      padding: 0 5px;
+      text-align: left;
+    }
+    
+    /* Specific fix for Pixel 7 */
+    @media screen and (width: 412px) {
+      padding: 0 10px;
+    }
   }
 `
 
@@ -37,6 +48,11 @@ const Stats = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-top: 3rem;
+  
+  /* Fix for mobile */
+  @media (max-width: 768px) {
+    padding: 0 5px;
+  }
 `
 
 const StatItem = styled(motion.div)`
@@ -61,12 +77,28 @@ const ImageContainer = styled(motion.div)`
     width: 100%;
     border-radius: 10px;
   }
+  
+  /* Fix for mobile */
+  @media (max-width: 768px) {
+    padding: 0 5px;
+  }
 `
 
 const ButtonContainer = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+  
+  /* Improve mobile display */
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 5px;
+  }
+  
+  /* Specific fix for Pixel 7 */
+  @media screen and (width: 412px) {
+    padding: 0 10px;
+  }
 `
 
 const Button = styled(motion.a)`
@@ -79,10 +111,16 @@ const Button = styled(motion.a)`
   border: 2px solid ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.primary};
   transition: all 0.3s ease;
+  text-align: center;
   
   &:hover {
     background: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.dark};
+  }
+  
+  /* Improve mobile display */
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
   }
 `
 
@@ -97,8 +135,9 @@ const About = () => {
           </p>
           <p>
           MIE ROBOlution 1.0 is a first-of-its-kind robotics and automation festival hosted by CUET MIE. It is designed to bring together the brightest minds, challenging them in robotics competitions. The event aims to bridge academia and industry, inspiring the next generation of engineers to take on global technological challenges.
-
-With a grand prize pool of <b>330,000 BDT</b>, this competition is set to be a groundbreaking event in Bangladesh's robotics and automation landscape.
+          </p>
+          <p>
+          With a grand prize pool of <b>330,000 BDT</b>, this competition is set to be a groundbreaking event in Bangladesh's robotics and automation landscape.
           </p>
           
           <ButtonContainer>

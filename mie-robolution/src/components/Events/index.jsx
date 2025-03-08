@@ -104,13 +104,19 @@ const events = [
   },
   {
     title: 'Gaming Contest',
-    description: 'Compete in exciting games  [ Intra CUET ]',
-    registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
-    rulebookLink: '#'
+description: (
+  <>Compete in exciting games <br /> [ Intra CUET ]</>
+),
+registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
+rulebookLink: '#'
+
   },
   {
     title: 'Chess Competition',
-    description: 'Strategic battles of minds  [ Intra CUET ]',
+ 
+    description: (
+      <>Strategic battles of minds <br /> [ Intra CUET ]</>
+    ),
     registerLink: 'https://forms.gle/NKwbKdrKd2t2CJC69',
     rulebookLink: '#'
   }
