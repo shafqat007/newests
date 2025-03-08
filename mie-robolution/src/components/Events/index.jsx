@@ -54,6 +54,8 @@ const Button = styled.a`
   text-align: center;
   min-width: 90px;
   font-size: 0.9rem;
+  target: "_blank";
+  rel: "noopener noreferrer";
   
   @media (max-width: 400px) {
     padding: 0.6rem 0.8rem;
@@ -74,7 +76,7 @@ const events = [
   {
     title: 'Technical Seminar',
     description: 'Industry experts share insights and knowledge [ No registration required ]',
-    detailsLink: 'https://www.facebook.com/events/9420448124644824', // Replace with actual Facebook link
+    detailsLink: 'https://www.facebook.com/events/9420448124644824',
   },
   {
     title: 'Line Following Robot',
@@ -119,7 +121,13 @@ const events = [
     rulebookLink: '#'
   },
   {
-    title: 'Gaming Contest',
+    title: 'Gaming Contest - PUBG',
+    description: 'Compete in exciting games [ Intra CUET ]',
+    registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
+    rulebookLink: '#'
+  },
+  {
+    title: 'Gaming Contest - FIFA',
     description: 'Compete in exciting games [ Intra CUET ]',
     registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
     rulebookLink: '#'
@@ -151,11 +159,11 @@ const Events = () => {
             </EventDescription>
             <ButtonGroup>
               {event.detailsLink ? (
-                <Button href={event.detailsLink} primary>Details</Button>
+                <Button href={event.detailsLink} target="_blank" rel="noopener noreferrer" primary>Details</Button>
               ) : (
                 <>
-                  <Button href={event.registerLink} primary>Register</Button>
-                  <Button href={event.rulebookLink}>Rulebook</Button>
+                  <Button href={event.registerLink} target="_blank" rel="noopener noreferrer" primary>Register</Button>
+                  <Button href={event.rulebookLink} target="_blank" rel="noopener noreferrer">Rulebook</Button>
                 </>
               )}
             </ButtonGroup>

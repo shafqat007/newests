@@ -141,22 +141,25 @@ const About = () => {
           </p>
           
           <ButtonContainer>
-            <Button 
-              href="https://www.facebook.com/events/9420448124644824"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              EVENT ON FACEBOOK
-            </Button>
-            
-            <Button 
-              href="https://www.cuet.ac.bd/dept/mie" 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              MORE ON DEPARTMENT
-            </Button>
-          </ButtonContainer>
+  <Button 
+    href="https://www.facebook.com/events/9420448124644824"
+    target="_blank" // Opens link in a new tab
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    EVENT ON FACEBOOK
+  </Button>
+  
+  <Button 
+    href="https://www.cuet.ac.bd/dept/mie" 
+    target="_blank" // Opens link in a new tab
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    MORE ON DEPARTMENT
+  </Button>
+</ButtonContainer>
+
           
           <Stats>
             <StatItem

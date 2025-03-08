@@ -109,7 +109,8 @@ const Sponsors = () => {
       
       <BecomeSponsor>
         <p>Interested in becoming a sponsor? Knock Us!</p>
-        <Button href="https://www.facebook.com/profile.php?id=61572987875146">Become a Sponsor</Button>
+        <Button href="https://www.facebook.com/profile.php?id=61572987875146"
+        target='_blank' >Become a Sponsor</Button>
       </BecomeSponsor>
     </SponsorsSection>
   )
