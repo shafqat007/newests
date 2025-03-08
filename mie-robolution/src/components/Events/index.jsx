@@ -1,4 +1,3 @@
-// src/components/Events/index.jsx
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
@@ -20,6 +19,9 @@ const EventCard = styled(motion.div)`
   padding: 2rem;
   border-radius: 10px;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary};
@@ -32,18 +34,32 @@ const EventTitle = styled.h3`
   font-size: 1.5rem;
 `
 
+const EventDescription = styled.div`
+  flex-grow: 1;
+`
+
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
   margin-top: 1.5rem;
 `
 
 const Button = styled.a`
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1rem;
   text-decoration: none;
   border-radius: 5px;
   font-family: ${({ theme }) => theme.fonts.heading};
   transition: all 0.3s ease;
+  text-align: center;
+  min-width: 90px;
+  font-size: 0.9rem;
+  
+  @media (max-width: 400px) {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 80px;
+  }
   
   ${({ primary, theme }) => primary ? `
     background: ${theme.colors.primary};
@@ -104,19 +120,13 @@ const events = [
   },
   {
     title: 'Gaming Contest',
-description: (
-  <>Compete in exciting games <br /> [ Intra CUET ]</>
-),
-registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
-rulebookLink: '#'
-
+    description: 'Compete in exciting games [ Intra CUET ]',
+    registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
+    rulebookLink: '#'
   },
   {
     title: 'Chess Competition',
- 
-    description: (
-      <>Strategic battles of minds <br /> [ Intra CUET ]</>
-    ),
+    description: 'Strategic battles of minds [ Intra CUET ]',
     registerLink: 'https://forms.gle/NKwbKdrKd2t2CJC69',
     rulebookLink: '#'
   }
@@ -136,7 +146,9 @@ const Events = () => {
             transition={{ delay: index * 0.1 }}
           >
             <EventTitle>{event.title}</EventTitle>
-            <p>{event.description}</p>
+            <EventDescription>
+              <p>{event.description}</p>
+            </EventDescription>
             <ButtonGroup>
               {event.detailsLink ? (
                 <Button href={event.detailsLink} primary>Details</Button>

@@ -1,4 +1,3 @@
-// src/components/Sponsors/index.jsx
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
@@ -30,16 +29,21 @@ const SponsorCard = styled(motion.div)`
   padding: 2rem;
   text-align: center;
   border: 1px solid rgba(198, 230, 5, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
   
-  img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-  }
-
   h4 {
-    margin-top: 1rem;
     color: ${({ theme }) => theme.colors.light};
+    margin: 0;
+  }
+  
+  p {
+    color: ${({ theme }) => theme.colors.primary};
+    margin-top: 0.5rem;
+    font-style: italic;
   }
 `
 
@@ -67,21 +71,13 @@ const Button = styled.a`
   }
 `
 
-// Dynamically import images
-const sponsorImages = {
-  s3: new URL('/src/assets/images/s3.png', import.meta.url).href,
-  s4: new URL('/src/assets/images/s4.png', import.meta.url).href,
-}
-
 const Sponsors = () => {
   const sponsorCategories = {
     title: [
-      { name: "Sponsor 1", logo: sponsorImages.s3 },
-      { name: "Sponsor 1", logo: sponsorImages.s3 },
+      { name: "Coming Soon!", status: "Revealing Soon" }
     ],
     platinum: [
-      { name: "Sponsor 2", logo: sponsorImages.s4 },
-      { name: "Sponsor 2", logo: sponsorImages.s4 },
+      { name: "Coming Soon!", status: "Revealing Soon" }
     ],
   }
 
@@ -102,18 +98,18 @@ const Sponsors = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <img src={sponsor.logo} alt={sponsor.name} />
                   <h4>{sponsor.name}</h4>
+                  {sponsor.status && <p>{sponsor.status}</p>}
                 </SponsorCard>
               ))}
             </SponsorsGrid>
           </div>
         ))}
       </SponsorCategories>
-
+      
       <BecomeSponsor>
-        <p>Interested in becoming a sponsor?</p>
-        <Button href="#contact">Become a Sponsor</Button>
+        <p>Interested in becoming a sponsor? Knock Us!</p>
+        <Button href="https://www.facebook.com/profile.php?id=61572987875146">Become a Sponsor</Button>
       </BecomeSponsor>
     </SponsorsSection>
   )
