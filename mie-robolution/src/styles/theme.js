@@ -1,7 +1,7 @@
 export const theme = {
     colors: {
-      primary: '#C6E605',    // Neon green from your logo
-      dark: '#111111',       // Very dark background
+      primary: '#C6E605',    
+      dark: '#111111',       
       light: '#FFFFFF',
       gray: '#333333'
     },
