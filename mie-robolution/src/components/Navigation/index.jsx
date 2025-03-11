@@ -1,14 +1,15 @@
 // src/components/Navigation/index.jsx
-import { useState } from 'react'
-import styled from 'styled-components'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom'; // Add useLocation
+import styled from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Nav = styled.nav`
   position: fixed;
   top: 2rem;
   right: 2rem;
   z-index: 100;
-`
+`;
 
 const MenuButton = styled.button`
   background: none;
@@ -23,11 +24,12 @@ const MenuButton = styled.button`
     display: block;
     width: 30px;
     height: 2px;
-    background: ${({ theme, isOpen }) => isOpen ? 'transparent' : theme.colors.primary};
+    background: ${({ theme, isOpen }) => (isOpen ? 'transparent' : theme.colors.primary)};
     position: relative;
     transition: all 0.3s ease;
 
-    &::before, &::after {
+    &::before,
+    &::after {
       content: '';
       position: absolute;
       width: 30px;
@@ -37,16 +39,16 @@ const MenuButton = styled.button`
     }
 
     &::before {
-      top: ${({ isOpen }) => isOpen ? '0' : '-8px'};
-      transform: ${({ isOpen }) => isOpen ? 'rotate(45deg)' : 'none'};
+      top: ${({ isOpen }) => (isOpen ? '0' : '-8px')};
+      transform: ${({ isOpen }) => (isOpen ? 'rotate(45deg)' : 'none')};
     }
 
     &::after {
-      bottom: ${({ isOpen }) => isOpen ? '0' : '-8px'};
-      transform: ${({ isOpen }) => isOpen ? 'rotate(-45deg)' : 'none'};
+      bottom: ${({ isOpen }) => (isOpen ? '0' : '-8px')};
+      transform: ${({ isOpen }) => (isOpen ? 'rotate(-45deg)' : 'none')};
     }
   }
-`
+`;
 
 const Menu = styled(motion.div)`
   position: fixed;
@@ -57,10 +59,9 @@ const Menu = styled(motion.div)`
   background: rgba(17, 17, 17, 0.95);
   padding: 6rem 2rem;
   backdrop-filter: blur(10px);
-`
+`;
 
-
-const MenuItem = styled(motion.a)`
+const MenuItem = styled(motion(Link))`
   display: block;
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.5rem;
@@ -74,80 +75,83 @@ const MenuItem = styled(motion.a)`
     color: ${({ theme }) => theme.colors.primary};
   }
 
-  /* Add extra margin below "Contact" */
   &:nth-last-of-type(2) {
-    margin-bottom: 2rem; /* Adjust spacing */
+    margin-bottom: 2rem;
   }
-`
-
+`;
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation(); // Get current route
 
   const menuItems = [
-    { title: 'Home', href: '#home' },
-    { title: 'About', href: '#about' },
-    { title: 'Events', href: '#events' },
-    { title: 'Schedule', href: '#schedule' },
-    { title: 'Gallery', href: '#gallery' },
-    { title: 'Sponsors', href: '#sponsors' },
-    { title: 'Team', href: '#team' },
-    { title: 'Campus Ambassador', href: '#ambassador' },
-    { title: 'Contact', href: '#contact' },
-    
-  ]
+    { title: 'Home', to: '/' },
+    { title: 'About', to: '/#about' },
+    { title: 'Events', to: '/#events' },
+    { title: 'Schedule', to: '/#schedule' },
+    { title: 'Gallery', to: '/#gallery' },
+    { title: 'Sponsors', to: '/#sponsors' },
+    { title: 'Team', to: '/#team' },
+    { title: 'Campus Ambassador', to: '/#ambassador' },
+    { title: 'Contact', to: '/#contact' },
+  ];
 
   const menuVariants = {
     closed: {
       x: 300,
       transition: {
-        type: "tween",
-        duration: 0.3
-      }
+        type: 'tween',
+        duration: 0.3,
+      },
     },
     open: {
       x: 0,
       transition: {
-        type: "tween",
-        duration: 0.3
-      }
-    }
-  }
+        type: 'tween',
+        duration: 0.3,
+      },
+    },
+  };
 
   const itemVariants = {
     closed: { x: 50, opacity: 0 },
-    open: i => ({
+    open: (i) => ({
       x: 0,
       opacity: 1,
-      transition: {
-        delay: i * 0.1
+      transition: { delay: i * 0.1 },
+    }),
+  };
+
+  const handleClick = (to) => {
+    setIsOpen(false); // Close the menu
+    // If already on root, scroll to section; otherwise, navigate
+    if (location.pathname === '/' && to.startsWith('/#')) {
+      const sectionId = to.substring(2); // Remove "/#" to get ID
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
       }
-    })
-  }
+    }
+  };
 
   return (
     <Nav>
-      <MenuButton 
-        isOpen={isOpen} 
+      <MenuButton
+        isOpen={isOpen}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle Menu"
       >
         <span />
       </MenuButton>
-      
+
       <AnimatePresence>
         {isOpen && (
-          <Menu
-            initial="closed"
-            animate="open"
-            exit="closed"
-            variants={menuVariants}
-          >
+          <Menu initial="closed" animate="open" exit="closed" variants={menuVariants}>
             {menuItems.map((item, i) => (
               <MenuItem
                 key={item.title}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
+                to={item.to}
+                onClick={() => handleClick(item.to)}
                 variants={itemVariants}
                 custom={i}
                 whileHover={{ x: 20 }}
@@ -159,7 +163,7 @@ const Navigation = () => {
         )}
       </AnimatePresence>
     </Nav>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;

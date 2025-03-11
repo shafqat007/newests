@@ -1,16 +1,16 @@
 // src/App.jsx
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import About from './components/About'
-import Events from './components/Events'
-import Schedule from './components/Schedule'
-import Gallery from './components/Gallery'
-import Sponsors from './components/Sponsors'
-import CampusAmbassador from './components/CampusAmbassador'
-import Team from './components/Team'
-import Footer from './components/Footer'
-import EventDetail from './components/EventDetail'
+import { HashRouter, Routes, Route } from 'react-router-dom'; // Change to HashRouter
+import Navigation from './components/Navigation';
+import Hero from './components/Hero';
+import About from './components/About';
+import Events from './components/Events';
+import Schedule from './components/Schedule';
+import Gallery from './components/Gallery';
+import Sponsors from './components/Sponsors';
+import CampusAmbassador from './components/CampusAmbassador';
+import Team from './components/Team';
+import Footer from './components/Footer';
+import EventDetail from './components/EventDetail';
 
 // Create a HomePage component that contains all your current home sections
 const HomePage = () => {
@@ -25,12 +25,12 @@ const HomePage = () => {
       <CampusAmbassador />
       <Team />
     </>
-  )
-}
+  );
+};
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter> {/* Changed from BrowserRouter */}
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -38,8 +38,8 @@ function App() {
         {/* Add more routes as needed */}
       </Routes>
       <Footer />
-    </BrowserRouter>
-  )
+    </HashRouter>
+  );
 }
 
-export default App
+export default App;
