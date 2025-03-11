@@ -1,68 +1,74 @@
-import { useState } from 'react'
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom' // React Router instead of Next.js
+// src/components/EventDetail/index.jsx
+import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-const EventsSection = styled.section`
+const EventDetailSection = styled.section`
   padding: 5rem 5%;
   background: ${({ theme }) => theme.colors.dark};
-`
+  min-height: 100vh;
+`;
 
-const EventsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-`
-
-const EventCard = styled(motion.div)`
+const EventDetailContainer = styled(motion.div)`
+  max-width: 900px;
+  margin: 0 auto;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(198, 230, 5, 0.1);
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 10px;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  cursor: pointer;
+`;
 
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.primary};
-  }
-`
-
-const EventTitle = styled.h3`
+const EventTitle = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+`;
+
+const EventInfo = styled.div`
+  margin-bottom: 2rem;
+`;
+
+const InfoRow = styled.div`
+  display: flex;
   margin-bottom: 1rem;
-  font-size: 1.5rem;
-`
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const InfoLabel = styled.span`
+  width: 120px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+const InfoValue = styled.span`
+  flex: 1;
+`;
 
 const EventDescription = styled.div`
-  flex-grow: 1;
-`
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+`;
 
 const ButtonGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 1.5rem;
-`
+  gap: 1rem;
+  margin-top: 2rem;
+`;
 
 const Button = styled.a`
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.5rem;
   text-decoration: none;
   border-radius: 5px;
   font-family: ${({ theme }) => theme.fonts.heading};
   transition: all 0.3s ease;
   text-align: center;
-  min-width: 90px;
-  font-size: 0.9rem;
-  
-  @media (max-width: 400px) {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.8rem;
-    min-width: 80px;
-  }
+  font-size: 1rem;
   
   ${({ primary, theme }) => primary ? `
     background: ${theme.colors.primary};
@@ -71,8 +77,30 @@ const Button = styled.a`
     border: 1px solid ${theme.colors.primary};
     color: ${theme.colors.primary};
   `}
-`
+`;
 
+const BackButton = styled(Link)`
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: ${({ theme }) => theme.colors.primary};
+  text-decoration: none;
+  font-weight: bold;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const ListItem = styled.li`
+  margin-bottom: 0.5rem;
+`;
+
+const NotFound = styled.div`
+  text-align: center;
+  padding: 3rem;
+`;
+
+// This is our event data with all the events
 const events = [
   {
     id: "technical-seminar",
@@ -205,70 +233,171 @@ const events = [
     venue: 'Student Center',
     format: 'Swiss-system tournament with 5 rounds'
   }
-]
+];
 
-const Events = () => {
-  const navigate = useNavigate(); // Using React Router's navigate instead of Next.js router
-
-  const handleEventClick = (eventId) => {
-    // Navigate to the event details page
-    navigate(`/events/${eventId}`);
-  };
-
-  const handleButtonClick = (e, link) => {
-    e.stopPropagation(); // Prevent the card click from triggering
-    window.open(link, '_blank', 'noopener,noreferrer');
-  };
-
+const EventDetail = () => {
+  const { id } = useParams();
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    // Find the event with the matching ID
+    const foundEvent = events.find(event => event.id === id);
+    setEvent(foundEvent);
+    setLoading(false);
+  }, [id]);
+  
+  if (loading) {
+    return (
+      <EventDetailSection>
+        <BackButton to="/#events">← Back to Events</BackButton>
+        <EventDetailContainer>
+          <h2>Loading event details...</h2>
+        </EventDetailContainer>
+      </EventDetailSection>
+    );
+  }
+  
+  if (!event) {
+    return (
+      <EventDetailSection>
+        <BackButton to="/#events">← Back to Events</BackButton>
+        <NotFound>
+          <h2>Event not found</h2>
+          <p>Sorry, the event you're looking for doesn't exist.</p>
+        </NotFound>
+      </EventDetailSection>
+    );
+  }
+  
   return (
-    <EventsSection id="events">
-      <h2>What's in store?</h2>
-      <EventsGrid>
-        {events.map((event, index) => (
-          <EventCard
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            onClick={() => handleEventClick(event.id)}
-          >
-            <EventTitle>{event.title}</EventTitle>
-            <EventDescription>
-              <p>{event.description}</p>
-            </EventDescription>
-            <ButtonGroup>
-              {event.detailsLink ? (
-                <Button 
-                  href="#" 
-                  onClick={(e) => handleButtonClick(e, event.detailsLink)} 
-                  primary
-                >
-                  Details
-                </Button>
-              ) : (
-                <>
-                  <Button 
-                    href="#" 
-                    onClick={(e) => handleButtonClick(e, event.registerLink)} 
-                    primary
-                  >
-                    Register
-                  </Button>
-                  <Button 
-                    href="#" 
-                    onClick={(e) => handleButtonClick(e, event.rulebookLink)}
-                  >
-                    Rulebook
-                  </Button>
-                </>
-              )}
-            </ButtonGroup>
-          </EventCard>
-        ))}
-      </EventsGrid>
-    </EventsSection>
-  )
-}
+    <EventDetailSection>
+      <BackButton to="/#events">← Back to Events</BackButton>
+      <EventDetailContainer
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <EventTitle>{event.title}</EventTitle>
+        
+        <EventDescription>
+          {event.fullDescription}
+        </EventDescription>
+        
+        <EventInfo>
+          <InfoRow>
+            <InfoLabel>Date:</InfoLabel>
+            <InfoValue>{event.date}</InfoValue>
+          </InfoRow>
+          <InfoRow>
+            <InfoLabel>Time:</InfoLabel>
+            <InfoValue>{event.time}</InfoValue>
+          </InfoRow>
+          <InfoRow>
+            <InfoLabel>Venue:</InfoLabel>
+            <InfoValue>{event.venue}</InfoValue>
+          </InfoRow>
+          
+          {/* Conditionally render other details */}
+          {event.speakers && event.speakers.length > 0 && (
+            <InfoRow>
+              <InfoLabel>Speakers:</InfoLabel>
+              <InfoValue>
+                <ul>
+                  {event.speakers.map((speaker, index) => (
+                    <ListItem key={index}>{speaker}</ListItem>
+                  ))}
+                </ul>
+              </InfoValue>
+            </InfoRow>
+          )}
+          
+          {event.prizes && event.prizes.length > 0 && (
+            <InfoRow>
+              <InfoLabel>Prizes:</InfoLabel>
+              <InfoValue>
+                <ul>
+                  {event.prizes.map((prize, index) => (
+                    <ListItem key={index}>{prize}</ListItem>
+                  ))}
+                </ul>
+              </InfoValue>
+            </InfoRow>
+          )}
+          
+          {event.prize && (
+            <InfoRow>
+              <InfoLabel>Prize:</InfoLabel>
+              <InfoValue>{event.prize}</InfoValue>
+            </InfoRow>
+          )}
+          
+          {event.format && (
+            <InfoRow>
+              <InfoLabel>Format:</InfoLabel>
+              <InfoValue>{event.format}</InfoValue>
+            </InfoRow>
+          )}
+          
+          {event.categories && event.categories.length > 0 && (
+            <InfoRow>
+              <InfoLabel>Categories:</InfoLabel>
+              <InfoValue>
+                <ul>
+                  {event.categories.map((category, index) => (
+                    <ListItem key={index}>{category}</ListItem>
+                  ))}
+                </ul>
+              </InfoValue>
+            </InfoRow>
+          )}
+          
+          {event.judgingCriteria && event.judgingCriteria.length > 0 && (
+            <InfoRow>
+              <InfoLabel>Judging:</InfoLabel>
+              <InfoValue>
+                <ul>
+                  {event.judgingCriteria.map((criteria, index) => (
+                    <ListItem key={index}>{criteria}</ListItem>
+                  ))}
+                </ul>
+              </InfoValue>
+            </InfoRow>
+          )}
+          
+          {event.software && event.software.length > 0 && (
+            <InfoRow>
+              <InfoLabel>Software:</InfoLabel>
+              <InfoValue>
+                <ul>
+                  {event.software.map((sw, index) => (
+                    <ListItem key={index}>{sw}</ListItem>
+                  ))}
+                </ul>
+              </InfoValue>
+            </InfoRow>
+          )}
+        </EventInfo>
+        
+        <ButtonGroup>
+          {event.detailsLink ? (
+            <Button href={event.detailsLink} target="_blank" rel="noopener noreferrer" primary>
+              External Details
+            </Button>
+          ) : (
+            <>
+              <Button href={event.registerLink} target="_blank" rel="noopener noreferrer" primary>
+                Register Now
+              </Button>
+              <Button href={event.rulebookLink} target="_blank" rel="noopener noreferrer">
+                Download Rulebook
+              </Button>
+            </>
+          )}
+        </ButtonGroup>
+      </EventDetailContainer>
+    </EventDetailSection>
+  );
+};
 
-export default Events;
+export default EventDetail;

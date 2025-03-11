@@ -1,4 +1,5 @@
 // src/App.jsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -9,11 +10,12 @@ import Sponsors from './components/Sponsors'
 import CampusAmbassador from './components/CampusAmbassador'
 import Team from './components/Team'
 import Footer from './components/Footer'
+import EventDetail from './components/EventDetail'
 
-function App() {
+// Create a HomePage component that contains all your current home sections
+const HomePage = () => {
   return (
     <>
-      <Navigation />
       <Hero />
       <About />
       <Events />
@@ -22,8 +24,21 @@ function App() {
       <Sponsors />
       <CampusAmbassador />
       <Team />
-      <Footer />
     </>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/events/:id" element={<EventDetail />} />
+        {/* Add more routes as needed */}
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   )
 }
 
