@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import { useLocation } from 'react-router-dom' // Add this import
 import logo from "/src/assets/images/trans.png";
 
 const HeroSection = styled.section`
@@ -35,7 +36,7 @@ const Logo = styled.div`
   }
 `
 
-const Title = styled(motion.div)` 
+const Title = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +86,7 @@ const ButtonContainer = styled.div`
   }
 `
 
-const Button = styled(motion.a)`
+const Button = styled(motion.button)`
   padding: 1rem 2rem;
   font-family: ${({ theme }) => theme.fonts.heading};
   text-decoration: none;
@@ -94,6 +95,9 @@ const Button = styled(motion.a)`
   transition: all 0.3s ease;
   text-align: center;
   white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  outline: none;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -110,6 +114,7 @@ const Button = styled(motion.a)`
   ` : `
     border: 2px solid ${theme.colors.primary};
     color: ${theme.colors.primary};
+    background: transparent;
     
     &:hover {
       background: ${theme.colors.primary};
@@ -119,6 +124,17 @@ const Button = styled(motion.a)`
 `
 
 const Hero = () => {
+  const location = useLocation();
+
+  const handleScrollTo = (sectionId) => {
+    // Remove the "#" from the beginning of the sectionId
+    const id = sectionId.substring(1);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <HeroSection>
       <Logo>
@@ -143,8 +159,8 @@ const Hero = () => {
       
       <ButtonContainer>
         <Button 
-          href="#events" 
           primary
+          onClick={() => handleScrollTo('#events')}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 20 }}
@@ -154,7 +170,7 @@ const Hero = () => {
           EXPLORE EVENTS
         </Button>
         <Button 
-          href="#about"
+          onClick={() => handleScrollTo('#about')}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 20 }}

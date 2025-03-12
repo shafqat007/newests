@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom' // React Router instead of Next.js
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+// Sample image for testing
+import gamingImage from '/src/assets/images/e1.jpg'
 
 const EventsSection = styled.section`
   padding: 5rem 5%;
@@ -18,17 +22,45 @@ const EventsGrid = styled.div`
 const EventCard = styled(motion.div)`
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(198, 230, 5, 0.1);
-  padding: 2rem;
   border-radius: 10px;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
   cursor: pointer;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary};
   }
+`
+
+const EventImageContainer = styled.div`
+ width: 100%;
+  padding-top: 36.36%; /* Updated aspect ratio for 400x1100 */
+  position: relative;
+  overflow: hidden;
+`
+
+const EventImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  
+  ${EventCard}:hover & {
+    transform: scale(1.05);
+  }
+`
+
+const EventContent = styled.div`
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 `
 
 const EventTitle = styled.h3`
@@ -43,25 +75,22 @@ const EventDescription = styled.div`
 
 const ButtonGroup = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+  justify-content: center;
   margin-top: 1.5rem;
 `
 
-const Button = styled.a`
-  padding: 0.8rem 1rem;
+const Button = styled(Link)`
+  padding: 0.8rem 1.5rem;
   text-decoration: none;
   border-radius: 5px;
   font-family: ${({ theme }) => theme.fonts.heading};
   transition: all 0.3s ease;
   text-align: center;
-  min-width: 90px;
   font-size: 0.9rem;
   
   @media (max-width: 400px) {
     padding: 0.6rem 0.8rem;
     font-size: 0.8rem;
-    min-width: 80px;
   }
   
   ${({ primary, theme }) => primary ? `
@@ -72,6 +101,21 @@ const Button = styled.a`
     color: ${theme.colors.primary};
   `}
 `
+
+// Dynamically import event images
+const eventImages = {
+  'technical-seminar': new URL('/src/assets/images/4.png', import.meta.url).href,
+  'line-following-robot': new URL('/src/assets/images/lfr.png', import.meta.url).href,
+  'robo-soccer': new URL('/src/assets/images/3.png', import.meta.url).href,
+  'project-presentation': new URL('/src/assets/images/project.png', import.meta.url).href,
+  'cad-contest': new URL('/src/assets/images/2.png', import.meta.url).href,
+  'techathon': new URL('/src/assets/images/techathon.png', import.meta.url).href,
+  'logo-design-contest': new URL('/src/assets/images/logo.png', import.meta.url).href,
+  'poster-presentation': new URL('/src/assets/images/poster.png', import.meta.url).href,
+  'gaming-efootball': new URL('/src/assets/images/pes4.png', import.meta.url).href,
+  'gaming-fifa': new URL('/src/assets/images/fifa.png', import.meta.url).href,
+  'chess-competition': new URL('/src/assets/images/chess1.png', import.meta.url).href
+}
 
 const events = [
   {
@@ -170,12 +214,12 @@ const events = [
     categories: ['Engineering', 'Computer Science', 'Environmental Science', 'Biotechnology']
   },
   {
-    id: "gaming-pubg",
-    title: 'Gaming Contest - PUBG',
+    id: "gaming-efootball",
+    title: 'Gaming Contest - efootball',
     description: 'Compete in exciting games [ Intra CUET ]',
     registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
     rulebookLink: '#',
-    fullDescription: 'Show off your gaming skills in this PUBG tournament exclusively for CUET students. Teams of 4 will compete in multiple rounds to determine the ultimate champions.',
+    fullDescription: 'Show off your gaming skills in this efootball tournament exclusively for CUET students. Teams of 4 will compete in multiple rounds to determine the ultimate champions.',
     date: 'March 23, 2025',
     time: '2:00 PM - 8:00 PM',
     venue: 'Gaming Arena',
@@ -208,16 +252,11 @@ const events = [
 ]
 
 const Events = () => {
-  const navigate = useNavigate(); // Using React Router's navigate instead of Next.js router
+  const navigate = useNavigate();
 
-  const handleEventClick = (eventId) => {
-    // Navigate to the event details page
+  // Handle card click
+  const handleCardClick = (e, eventId) => {
     navigate(`/events/${eventId}`);
-  };
-
-  const handleButtonClick = (e, link) => {
-    e.stopPropagation(); // Prevent the card click from triggering
-    window.open(link, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -231,39 +270,29 @@ const Events = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            onClick={() => handleEventClick(event.id)}
+            onClick={(e) => handleCardClick(e, event.id)}
           >
-            <EventTitle>{event.title}</EventTitle>
-            <EventDescription>
-              <p>{event.description}</p>
-            </EventDescription>
-            <ButtonGroup>
-              {event.detailsLink ? (
+            <EventImageContainer>
+              <EventImage 
+                src={eventImages[event.id] || eventImages['technical-seminar']} 
+                alt={`${event.title} event`} 
+              />
+            </EventImageContainer>
+            <EventContent>
+              <EventTitle>{event.title}</EventTitle>
+              <EventDescription>
+                <p>{event.description}</p>
+              </EventDescription>
+              <ButtonGroup>
                 <Button 
-                  href="#" 
-                  onClick={(e) => handleButtonClick(e, event.detailsLink)} 
+                  to={`/events/${event.id}`} 
                   primary
+                  onClick={(e) => e.stopPropagation()} // Prevent card click
                 >
-                  Details
+                  Learn More
                 </Button>
-              ) : (
-                <>
-                  <Button 
-                    href="#" 
-                    onClick={(e) => handleButtonClick(e, event.registerLink)} 
-                    primary
-                  >
-                    Register
-                  </Button>
-                  <Button 
-                    href="#" 
-                    onClick={(e) => handleButtonClick(e, event.rulebookLink)}
-                  >
-                    Rulebook
-                  </Button>
-                </>
-              )}
-            </ButtonGroup>
+              </ButtonGroup>
+            </EventContent>
           </EventCard>
         ))}
       </EventsGrid>

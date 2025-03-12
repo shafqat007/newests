@@ -82,7 +82,12 @@ const Footer = () => {
 
       </FooterGrid>
 
-      <Copyright>© 2025 MIE ROBOlution. Made by Shafqat</Copyright>
+      <Copyright>
+  © 2025 MIE ROBOlution. Made by{" "}
+  <a href="https://www.facebook.com/shafqatnawazchy/" target="_blank" rel="noopener noreferrer">
+    Shafqat
+  </a>
+</Copyright>
     </FooterSection>
   );
 };
