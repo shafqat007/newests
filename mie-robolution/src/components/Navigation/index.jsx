@@ -1,6 +1,6 @@
 // src/components/Navigation/index.jsx
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Add useLocation
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -50,6 +50,37 @@ const MenuButton = styled.button`
   }
 `;
 
+const GoToTopButton = styled(motion.button)`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.dark};
+  border: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-size: 2.5rem;
+  
+  font-weight: bold;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+`;
+
 const Menu = styled(motion.div)`
   position: fixed;
   top: 0;
@@ -82,7 +113,8 @@ const MenuItem = styled(motion(Link))`
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation(); // Get current route
+  const [showGoToTop, setShowGoToTop] = useState(false);
+  const location = useLocation();
 
   const menuItems = [
     { title: 'Home', to: '/' },
@@ -92,9 +124,34 @@ const Navigation = () => {
     { title: 'Gallery', to: '/#gallery' },
     { title: 'Sponsors', to: '/#sponsors' },
     { title: 'Team', to: '/#team' },
+    { title: 'Faculty', to: '/#faculty' },
     { title: 'Campus Ambassador', to: '/#ambassador' },
     { title: 'Contact', to: '/#contact' },
   ];
+
+  // Show/hide go to top button based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowGoToTop(true);
+      } else {
+        setShowGoToTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const menuVariants = {
     closed: {
@@ -135,34 +192,53 @@ const Navigation = () => {
   };
 
   return (
-    <Nav>
-      <MenuButton
-        isOpen={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle Menu"
-      >
-        <span />
-      </MenuButton>
+    <>
+      <Nav>
+        <MenuButton
+          isOpen={isOpen}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+        >
+          <span />
+        </MenuButton>
+
+        <AnimatePresence>
+          {isOpen && (
+            <Menu initial="closed" animate="open" exit="closed" variants={menuVariants}>
+              {menuItems.map((item, i) => (
+                <MenuItem
+                  key={item.title}
+                  to={item.to}
+                  onClick={() => handleClick(item.to)}
+                  variants={itemVariants}
+                  custom={i}
+                  whileHover={{ x: 20 }}
+                >
+                  {item.title}
+                </MenuItem>
+              ))}
+            </Menu>
+          )}
+        </AnimatePresence>
+      </Nav>
 
       <AnimatePresence>
-        {isOpen && (
-          <Menu initial="closed" animate="open" exit="closed" variants={menuVariants}>
-            {menuItems.map((item, i) => (
-              <MenuItem
-                key={item.title}
-                to={item.to}
-                onClick={() => handleClick(item.to)}
-                variants={itemVariants}
-                custom={i}
-                whileHover={{ x: 20 }}
-              >
-                {item.title}
-              </MenuItem>
-            ))}
-          </Menu>
+        {showGoToTop && (
+          <GoToTopButton
+            onClick={scrollToTop}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label="Go to top"
+          >
+            ^
+            
+          </GoToTopButton>
         )}
       </AnimatePresence>
-    </Nav>
+    </>
   );
 };
 

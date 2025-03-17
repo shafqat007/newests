@@ -11,6 +11,7 @@ import CampusAmbassador from './components/CampusAmbassador';
 import Team from './components/Team';
 import Footer from './components/Footer';
 import EventDetail from './components/EventDetail';
+import Faculty from './components/Faculty';
 
 // Create a HomePage component that contains all your current home sections
 const HomePage = () => {
@@ -23,7 +24,9 @@ const HomePage = () => {
       <Gallery />
       <Sponsors />
       <CampusAmbassador />
+      <Faculty />
       <Team />
+      
     </>
   );
 };

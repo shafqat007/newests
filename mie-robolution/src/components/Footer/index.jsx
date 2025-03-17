@@ -60,8 +60,9 @@ const Footer = () => {
 
         <FooterColumn>
           <h3>Contact Info</h3>
+          <p>Department of Mechatronics & Industrial Engineering</p>
           <p>Chittagong University of Engineering & Technology (CUET)</p>
-          <p>Email: mierobolution2025@gmail.com</p>
+          <p>Email: headmie@cuet.ac.bd, mierobolution2025@gmail.com</p>
           <p>Contact: +880 1670-558956</p>
         </FooterColumn>
 
@@ -83,10 +84,9 @@ const Footer = () => {
       </FooterGrid>
 
       <Copyright>
-  © 2025 MIE ROBOlution. Made by{" "}
-  <a href="https://www.facebook.com/shafqatnawazchy/" target="_blank" rel="noopener noreferrer">
-    Shafqat
-  </a>
+  © 2025 MIE ROBOlution. Made by Shafqat Nawaz{/*{" "}
+<a href="https://www.facebook.com/shafqatnawazchy/" target="_blank" rel="noopener noreferrer">
+  </a>*/}
 </Copyright>
     </FooterSection>
   );
