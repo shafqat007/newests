@@ -216,7 +216,7 @@ const eventImages = {
   'chess-competition': new URL('/src/assets/images/chess1.png', import.meta.url).href
 }
 
-// Complete event data with all details
+// Complete event data with all details and updated links
 const events = [
   {
     id: 'technical-seminar',
@@ -225,62 +225,63 @@ const events = [
     detailsLink: 'https://www.facebook.com/events/9420448124644824',
     fullDescription:
       'Join our technical seminar where industry experts will share valuable insights and knowledge on the latest technological trends and innovations. Attendance is open to all with no registration required.',
-    date: 'April 15, 2025',
-    time: '10:00 AM - 1:00 PM',
-    venue: 'Main Auditorium',
-    speakers: ['Dr. Ashraful Islam', 'Prof. Tahmina Rahman'],
+    date: 'April 17, 2025',
+    time: '11:00 AM - 02:00 PM',
+    venue: 'Technical Seminar',
+    speakers: ['Shall be announced soon', 'Stay tuned for updates'],
   },
   {
     id: 'line-following-robot',
     title: 'Line Following Robot',
     description: 'Test your robot precision and speed',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/YYtVH2fviyY9rU4MA',
+    rulebookLink: 'https://drive.google.com/file/d/15YVsyN5tIv-AIxJcSZHAUlxn-d8OG8aD/view?usp=sharing',
     fullDescription:
       'Design a robot that can autonomously follow a line track with precision and speed. The competition will test your engineering skills in building sensors and implementing control algorithms.',
-    date: 'April 15, 2025',
+    date: 'April 19, 2025',
     time: '9:00 AM - 4:00 PM',
-    venue: 'Robotics Lab',
-    prizes: ['1st Place: ৳৳৳৳', '2nd Place: ৳৳৳', '3rd Place: ৳৳'],
+    venue: 'Academic Building 4',
+    prizes: [ 'Total Prize Pool: 48,000Tk', 'Reg Fee: 2040Tk'],
   },
   {
     id: 'robo-soccer',
     title: 'Robo Soccer',
     description: 'Unleash your robot agility',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/DWCHrmtoZauCrFvf7',
+    rulebookLink: 'https://drive.google.com/file/d/12x5Kbxl8aS5RIzg7trxwjgBjAGPiiaHR/view?usp=drive_link',
     fullDescription:
       'Build a soccer-playing robot and compete in our tournament. Your robot must be able to detect the ball, navigate the field, and score goals against opponent robots.',
-    date: 'April 16, 2025',
-    time: '10:00 AM - 6:00 PM',
-    venue: 'Sports Complex',
-    prizes: ['1st Place: ৳৳৳৳', '2nd Place: ৳৳৳', '3rd Place: ৳৳'],
+    date: 'April 18, 2025',
+    time: '9.30 AM - 11:00 AM',
+    venue: 'Academic Building 4',
+    prizes: ['Total Prize Pool: 60,000Tk', 'Reg Fee: 2240Tk'],
   },
   {
     id: 'project-presentation',
     title: 'Project Presentation',
     description: 'Showcase your groundbreaking ideas',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/NYw4vc2BvQ9mXDCi8',
+    rulebookLink: 'https://drive.google.com/file/d/1Q_kgy8Q1YvnWdCrVYaLlY-efX4L_60p_/view?usp=drive_link',
     fullDescription:
       'Present your innovative projects to a panel of judges from academia and industry. This is a great opportunity to receive feedback and potentially find sponsors for your ideas.',
-    date: 'April 16, 2025',
-    time: '11:00 AM - 3:00 PM',
-    venue: 'Conference Hall',
+    date: 'April 18, 2025',
+    time: '11:00 AM - 12:00 PM',
+    venue: 'CUET TSC',
     judgingCriteria: ['Innovation', 'Technical Feasibility', 'Presentation Quality', 'Potential Impact'],
+    prizes: ['Total Prize Pool: 45,000Tk', 'Reg Fee: 1200Tk'],
   },
   {
     id: 'cad-contest',
     title: 'CAD Contest',
     description: 'Test your design skills',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/uqPyHMnkznA2rn1h8',
+    rulebookLink: 'https://drive.google.com/file/d/1yj42iw26Sja-bbcT7yQeKaYNeU2uKCVi/view?usp=drive_link',
     fullDescription:
       'Demonstrate your Computer-Aided Design expertise by creating 3D models based on given specifications within a limited time frame.',
-    date: 'April 16, 2025',
-    time: '9:00 AM - 12:00 PM',
-    venue: 'Design Studio',
-    software: ['AutoCAD', 'SolidWorks', 'Fusion 360'],
+    date: 'April 19, 2025',
+    time: '03:00 PM - 04:00 PM',
+    venue: 'CUET MIE Computer Lab',
+    software: ['Solidworks version 2020 or later','Total Prize Pool: 27,000Tk', 'Reg Fee: 400Tk'],
   },
   {
     id: 'techathon',
@@ -290,75 +291,77 @@ const events = [
     rulebookLink: '#',
     fullDescription:
       'A 24-hour hackathon where teams develop solutions to real-world problems provided by industry partners. Food and refreshments will be provided.',
-    date: 'April 16-17, 2025',
-    time: '10:00 AM - 10:00 AM (next day)',
-    venue: 'Innovation Hub',
-    prizes: ['1st Place: ৳৳৳৳৳', '2nd Place: ৳৳৳৳', '3rd Place: ৳৳৳'],
+    date: 'April 18-19, 2025',
+    time: '03:00 PM - 05:00 PM (Next Day)',
+    venue: 'CUET IT Business Incubator',
+    prizes: ['Total Prize Pool: 100,000Tk', 'Reg Fee: 4000Tk'],
   },
   {
     id: 'logo-design-contest',
     title: 'Logo Design Contest',
     description: 'Show your creative prowess',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/V3zXV2A79VVwNfzE7',
+    rulebookLink: 'https://drive.google.com/file/d/13IanI99Rbq5JNP0l8E1EjVswncIe35-y/view?usp=drive_link',
     fullDescription:
       'Design a logo for our upcoming university initiative. The winning design will be officially adopted and the designer will be credited in all future publications.',
-    date: 'April 15, 2025',
-    time: 'Submit by 6:00 PM',
-    venue: 'Online Submission',
-    prize: 'Winner: ৳৳৳ and official recognition',
+    date: 'April 19, 2025',
+    time: '09:00 AM - 09:30 AM',
+    venue: 'CUET MIE Computer Lab',
+    prize: ['Total Prize Pool: 5,000Tk', ' Reg Fee: 300Tk'],
   },
   {
     id: 'poster-presentation',
     title: 'Poster Presentation',
     description: 'Present your research visually',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/ZM5cSoBHDBYzaTrR7',
+    rulebookLink: 'https://drive.google.com/file/d/15vMflThdRqLUOT28k4CekKk0oKTFtIt5/view?usp=drive_link',
     fullDescription:
       'Create and present a research poster on your ongoing or completed research project. This is an excellent opportunity to network with peers and receive valuable feedback.',
-    date: 'April 17, 2025',
-    time: '1:00 PM - 5:00 PM',
-    venue: 'Exhibition Hall',
-    categories: ['Engineering', 'Computer Science', 'Environmental Science', 'Biotechnology'],
+    date: 'April 18, 2025',
+    time: '12:10 PM - 01:00 PM',
+    venue: 'CUET TSC',
+    prize: ['Total Prize Pool: 20,000Tk,', ' Reg Fee: 1000Tk'],
+    categories: ['Next-Generation Robotics in Industrial Automation', 'The Future of Smart Manufacturing: Industry 4.0 & Beyond', 'AI and Machine Learning Applications in Engineering', 'Autonomous Systems: From Self-Driving Cars to Smart Factories', 'Sustainable Engineering: Innovations for a Greener Future', 'Human-Robot Collaboration: The Rise of Cobots', 'The Role of Mechatronics in Space Exploration', 'Advanced Sensors and Control Systems in Modern Engineering', 'The Impact of IoT on Industrial Efficiency'],
+
   },
   {
     id: 'gaming-efootball',
     title: 'Gaming Contest - efootball',
     description: 'Compete in exciting games [ Intra CUET ]',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/CeyrUf1eeqSqJ8PE9',
+    rulebookLink: 'https://drive.google.com/file/d/13N9Qd4Xbn9Fff1_cOLoMTdVeCiUg5PpM/view?usp=drive_link',
     fullDescription:
       'Show off your gaming skills in this efootball tournament exclusively for CUET students. Teams of 4 will compete in multiple rounds to determine the ultimate champions.',
-    date: 'April 17, 2025',
-    time: '2:00 PM - 8:00 PM',
-    venue: 'Gaming Arena',
-    prizes: ['Winner: Trophy + Certificates', 'Runner-up: Certificates'],
+    date: 'April 19, 2025',
+    time: '04:00 PM - 05:00 PM',
+    venue: 'CUET Auditorium',
+    prizes: ['Total Prize Pool: 4,000Tk', ' Reg Fee: 50Tk'],
   },
   {
     id: 'gaming-fifa',
     title: 'Gaming Contest - FIFA',
     description: 'Compete in exciting games [ Intra CUET ]',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/TnsZquKuWdb4kZ5i6',
+    rulebookLink: 'https://drive.google.com/file/d/1kj7zJs32nTBtWVqEgl7q7ll3DCqZ9RLX/view?usp=drive_link',
     fullDescription:
       'Challenge your fellow CUET students in a FIFA tournament. Players will compete in a knockout format to crown the campus champion.',
-    date: 'April 17, 2025',
-    time: '3:00 PM - 7:00 PM',
-    venue: 'Gaming Arena',
-    prizes: ['Winner: Trophy + Certificates', 'Runner-up: Certificates'],
+    date: 'April 19, 2025',
+    time: '04:00 PM - 05:00 PM',
+    venue: 'CUET Auditorium',
+    prizes:  ['Total Prize Pool: 6,000Tk', ' Reg Fee: 100Tk'],
   },
   {
     id: 'chess-competition',
     title: 'Chess Competition',
     description: 'Strategic battles of minds [ Intra CUET ]',
-    registerLink: '#',
-    rulebookLink: '#',
+    registerLink: 'https://forms.gle/E9fwJiYcDQCC9u34A',
+    rulebookLink: 'https://drive.google.com/file/d/16MVHTSt2gJy5cZHbJaEXyBIWTe2JmzII/view?usp=drive_link',
     fullDescription:
       'Test your strategic thinking in our chess tournament. The competition will follow standard chess rules with time controls appropriate for all skill levels.',
-    date: 'April 17, 2025',
-    time: '10:00 AM - 4:00 PM',
-    venue: 'Student Center',
-    format: 'Swiss-system tournament with 5 rounds',
+    date: 'April 19, 2025',
+    time: '05:00 PM - 05:30 PM',
+    venue: 'CUET TSC',
+    format: 'Swiss-system tournament',
   },
 ];
 
@@ -372,6 +375,7 @@ const EventDetail = () => {
     const foundEvent = events.find((event) => event.id === id);
     setEvent(foundEvent);
     setLoading(false);
+    window.scrollTo(0, 0);
   }, [id]);
 
   const showNotification = (message) => {
@@ -382,8 +386,12 @@ const EventDetail = () => {
     }, 3500);
   };
 
-  const handleButtonClick = (type) => {
-    showNotification(`Registration ${type === 'register' ? 'form' : 'rulebook'} coming soon! Please check back later.`);
+  const handleButtonClick = (type, link) => {
+    if (link === '#') {
+      showNotification(`Registration ${type === 'register' ? 'form' : 'rulebook'} coming soon! Please check back later.`);
+    } else {
+      window.open(link, '_blank');
+    }
   };
 
   if (loading) {
@@ -612,13 +620,13 @@ const EventDetail = () => {
             ) : (
               <>
                 <Button 
-                  onClick={() => handleButtonClick('register')} 
+                  onClick={() => handleButtonClick('register', event.registerLink)} 
                   primary
                 >
                   Register Now
                 </Button>
                 <Button 
-                  onClick={() => handleButtonClick('rulebook')}
+                  onClick={() => handleButtonClick('rulebook', event.rulebookLink)}
                 >
                   Download Rulebook
                 </Button>

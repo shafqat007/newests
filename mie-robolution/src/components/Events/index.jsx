@@ -130,16 +130,16 @@ const events = [
     speakers: ['Dr. John Smith', 'Prof. Maria Rodriguez']
   },
   {
-    id: "line-following-robot",
-    title: 'Line Following Robot',
-    description: 'Test your robot precision and speed',
-    registerLink: 'https://forms.gle/PsA17ZVVu6hhZxyMA',
+    id: "techathon",
+    title: 'Techathon',
+    description: 'Solve real-world challenges',
+    registerLink: 'https://forms.gle/BBJu3hKrCN8JjWkm9',
     rulebookLink: '#',
-    fullDescription: 'Design a robot that can autonomously follow a line track with precision and speed. The competition will test your engineering skills in building sensors and implementing control algorithms.',
-    date: 'March 16, 2025',
-    time: '9:00 AM - 4:00 PM',
-    venue: 'Robotics Lab',
-    prizes: ['1st Place: $500', '2nd Place: $300', '3rd Place: $150']
+    fullDescription: 'A 24-hour hackathon where teams develop solutions to real-world problems provided by industry partners. Food and refreshments will be provided.',
+    date: 'March 20-21, 2025',
+    time: '10:00 AM - 10:00 AM (next day)',
+    venue: 'Innovation Hub',
+    prizes: ['1st Place: $1000', '2nd Place: $700', '3rd Place: $400']
   },
   {
     id: "robo-soccer",
@@ -153,6 +153,19 @@ const events = [
     venue: 'Sports Complex',
     prizes: ['1st Place: $600', '2nd Place: $350', '3rd Place: $200']
   },
+  {
+    id: "line-following-robot",
+    title: 'Line Following Robot',
+    description: 'Test your robot precision and speed',
+    registerLink: 'https://forms.gle/PsA17ZVVu6hhZxyMA',
+    rulebookLink: '#',
+    fullDescription: 'Design a robot that can autonomously follow a line track with precision and speed. The competition will test your engineering skills in building sensors and implementing control algorithms.',
+    date: 'March 16, 2025',
+    time: '9:00 AM - 4:00 PM',
+    venue: 'Robotics Lab',
+    prizes: ['1st Place: $500', '2nd Place: $300', '3rd Place: $150']
+  },
+ 
   {
     id: "project-presentation",
     title: 'Project Presentation',
@@ -177,30 +190,8 @@ const events = [
     venue: 'Design Studio',
     software: ['AutoCAD', 'SolidWorks', 'Fusion 360']
   },
-  {
-    id: "techathon",
-    title: 'Techathon',
-    description: 'Solve real-world challenges',
-    registerLink: 'https://forms.gle/BBJu3hKrCN8JjWkm9',
-    rulebookLink: '#',
-    fullDescription: 'A 24-hour hackathon where teams develop solutions to real-world problems provided by industry partners. Food and refreshments will be provided.',
-    date: 'March 20-21, 2025',
-    time: '10:00 AM - 10:00 AM (next day)',
-    venue: 'Innovation Hub',
-    prizes: ['1st Place: $1000', '2nd Place: $700', '3rd Place: $400']
-  },
-  {
-    id: "logo-design-contest",
-    title: 'Logo Design Contest',
-    description: 'Show your creative prowess',
-    registerLink: 'https://forms.gle/QNsrHGox3EsSLSwn7',
-    rulebookLink: '#',
-    fullDescription: 'Design a logo for our upcoming university initiative. The winning design will be officially adopted and the designer will be credited in all future publications.',
-    date: 'March 15, 2025',
-    time: 'Submit by 6:00 PM',
-    venue: 'Online Submission',
-    prize: 'Winner: $250 and official recognition'
-  },
+  
+ 
   {
     id: "poster-presentation",
     title: 'Poster Presentation',
@@ -213,18 +204,7 @@ const events = [
     venue: 'Exhibition Hall',
     categories: ['Engineering', 'Computer Science', 'Environmental Science', 'Biotechnology']
   },
-  {
-    id: "gaming-efootball",
-    title: 'Gaming Contest - efootball',
-    description: 'Compete in exciting games [ Intra CUET ]',
-    registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
-    rulebookLink: '#',
-    fullDescription: 'Show off your gaming skills in this efootball tournament exclusively for CUET students. Teams of 4 will compete in multiple rounds to determine the ultimate champions.',
-    date: 'March 23, 2025',
-    time: '2:00 PM - 8:00 PM',
-    venue: 'Gaming Arena',
-    prizes: ['Winner: Trophy + Certificates', 'Runner-up: Certificates']
-  },
+
   {
     id: "gaming-fifa",
     title: 'Gaming Contest - FIFA',
@@ -248,6 +228,30 @@ const events = [
     time: '10:00 AM - 4:00 PM',
     venue: 'Student Center',
     format: 'Swiss-system tournament with 5 rounds'
+  },
+  {
+    id: "logo-design-contest",
+    title: 'Logo Design Contest',
+    description: 'Show your creative prowess',
+    registerLink: 'https://forms.gle/QNsrHGox3EsSLSwn7',
+    rulebookLink: '#',
+    fullDescription: 'Design a logo for our upcoming university initiative. The winning design will be officially adopted and the designer will be credited in all future publications.',
+    date: 'March 15, 2025',
+    time: 'Submit by 6:00 PM',
+    venue: 'Online Submission',
+    prize: 'Winner: $250 and official recognition'
+  },
+  {
+    id: "gaming-efootball",
+    title: 'Gaming Contest - efootball',
+    description: 'Compete in exciting games [ Intra CUET ]',
+    registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
+    rulebookLink: '#',
+    fullDescription: 'Show off your gaming skills in this efootball tournament exclusively for CUET students. Teams of 4 will compete in multiple rounds to determine the ultimate champions.',
+    date: 'March 23, 2025',
+    time: '2:00 PM - 8:00 PM',
+    venue: 'Gaming Arena',
+    prizes: ['Winner: Trophy + Certificates', 'Runner-up: Certificates']
   }
 ]
 
