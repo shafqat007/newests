@@ -248,7 +248,7 @@ const events = [
     title: 'Robo Soccer',
     description: 'Unleash your robot agility',
     registerLink: 'https://forms.gle/DWCHrmtoZauCrFvf7',
-    rulebookLink: 'https://drive.google.com/file/d/12x5Kbxl8aS5RIzg7trxwjgBjAGPiiaHR/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/1fApq39kvm-vZct68qLpD0Mmf6MLbgcjF/view?usp=drive_link',
     fullDescription:
       'Build a soccer-playing robot and compete in our tournament. Your robot must be able to detect the ball, navigate the field, and score goals against opponent robots.',
     date: 'April 18, 2025',
@@ -261,27 +261,27 @@ const events = [
     title: 'Project Presentation',
     description: 'Showcase your groundbreaking ideas',
     registerLink: 'https://forms.gle/NYw4vc2BvQ9mXDCi8',
-    rulebookLink: 'https://drive.google.com/file/d/1Q_kgy8Q1YvnWdCrVYaLlY-efX4L_60p_/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/1LLIZ8jSbUcwj4khjncuaoNn6WsjeXi8j/view?usp=drive_link',
     fullDescription:
       'Present your innovative projects to a panel of judges from academia and industry. This is a great opportunity to receive feedback and potentially find sponsors for your ideas.',
     date: 'April 18, 2025',
     time: '11:00 AM - 12:00 PM',
     venue: 'CUET TSC',
     judgingCriteria: ['Innovation', 'Technical Feasibility', 'Presentation Quality', 'Potential Impact'],
-    prizes: ['Total Prize Pool: 45,000Tk', 'Reg Fee: 1200Tk'],
+    prizes: ['Total Prize Pool: 45,000Tk', 'Reg Fee: 1220'],
   },
   {
     id: 'cad-contest',
     title: 'CAD Contest',
     description: 'Test your design skills',
     registerLink: 'https://forms.gle/uqPyHMnkznA2rn1h8',
-    rulebookLink: 'https://drive.google.com/file/d/1yj42iw26Sja-bbcT7yQeKaYNeU2uKCVi/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/1ryXK4ahBcsk0f9uR-wwNcU0d16-YXIHf/view?usp=drive_link',
     fullDescription:
       'Demonstrate your Computer-Aided Design expertise by creating 3D models based on given specifications within a limited time frame.',
     date: 'April 19, 2025',
     time: '03:00 PM - 04:00 PM',
     venue: 'CUET MIE Computer Lab',
-    software: ['Solidworks version 2020 or later','Total Prize Pool: 27,000Tk', 'Reg Fee: 400Tk'],
+    software: ['Solidworks version 2020 or later','Total Prize Pool: 27,000Tk', 'Reg Fee: 410Tk'],
   },
   {
     id: 'techathon',
@@ -301,26 +301,26 @@ const events = [
     title: 'Logo Design Contest',
     description: 'Show your creative prowess',
     registerLink: 'https://forms.gle/V3zXV2A79VVwNfzE7',
-    rulebookLink: 'https://drive.google.com/file/d/13IanI99Rbq5JNP0l8E1EjVswncIe35-y/view?usp=drive_link',
+    rulebookLink:'https://drive.google.com/file/d/1Aj-ANehpddV4xdRK6-hg40vfWKXI0IMx/view?usp=sharing',
     fullDescription:
       'Design a logo for our upcoming university initiative. The winning design will be officially adopted and the designer will be credited in all future publications.',
     date: 'April 19, 2025',
     time: '09:00 AM - 09:30 AM',
-    venue: 'CUET MIE Computer Lab',
-    prize: ['Total Prize Pool: 5,000Tk', ' Reg Fee: 300Tk'],
+    venue: 'Online, Open to All',
+    prize: ['Total Prize Pool: 5,000Tk', ' Reg Fee: 305Tk'],
   },
   {
     id: 'poster-presentation',
     title: 'Poster Presentation',
     description: 'Present your research visually',
     registerLink: 'https://forms.gle/ZM5cSoBHDBYzaTrR7',
-    rulebookLink: 'https://drive.google.com/file/d/15vMflThdRqLUOT28k4CekKk0oKTFtIt5/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/1JMGwnrqcVsVNGtGxhNV0ZOojl_oW9M_S/view?usp=sharing',
     fullDescription:
       'Create and present a research poster on your ongoing or completed research project. This is an excellent opportunity to network with peers and receive valuable feedback.',
     date: 'April 18, 2025',
     time: '12:10 PM - 01:00 PM',
     venue: 'CUET TSC',
-    prize: ['Total Prize Pool: 20,000Tk,', ' Reg Fee: 1000Tk'],
+    prize: ['Total Prize Pool: 20,000Tk,', ' Reg Fee: 1020Tk'],
     categories: ['Next-Generation Robotics in Industrial Automation', 'The Future of Smart Manufacturing: Industry 4.0 & Beyond', 'AI and Machine Learning Applications in Engineering', 'Autonomous Systems: From Self-Driving Cars to Smart Factories', 'Sustainable Engineering: Innovations for a Greener Future', 'Human-Robot Collaboration: The Rise of Cobots', 'The Role of Mechatronics in Space Exploration', 'Advanced Sensors and Control Systems in Modern Engineering', 'The Impact of IoT on Industrial Efficiency'],
 
   },
@@ -335,7 +335,7 @@ const events = [
     date: 'April 19, 2025',
     time: '04:00 PM - 05:00 PM',
     venue: 'CUET Auditorium',
-    prizes: ['Total Prize Pool: 4,000Tk', ' Reg Fee: 50Tk'],
+    prizes: ['Total Prize Pool: 4,000Tk', ' Reg Fee: 55Tk'],
   },
   {
     id: 'gaming-fifa',
@@ -348,7 +348,7 @@ const events = [
     date: 'April 19, 2025',
     time: '04:00 PM - 05:00 PM',
     venue: 'CUET Auditorium',
-    prizes:  ['Total Prize Pool: 6,000Tk', ' Reg Fee: 100Tk'],
+    prizes:  ['Total Prize Pool: 6,000Tk', ' Reg Fee: 105Tk'],
   },
   {
     id: 'chess-competition',
@@ -362,6 +362,7 @@ const events = [
     time: '05:00 PM - 05:30 PM',
     venue: 'CUET TSC',
     format: 'Swiss-system tournament',
+    prizes:  ['Total Prize Pool: 6,000Tk', ' Reg Fee: 210Tk'],
   },
 ];
 
