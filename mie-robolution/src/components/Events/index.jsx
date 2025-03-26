@@ -208,7 +208,7 @@ const events = [
   {
     id: "gaming-fifa",
     title: 'Gaming Contest - FIFA',
-    description: 'Compete in exciting games [ Intra CUET ]',
+    description: 'Compete in exciting games [ Only for CUETian ]',
     registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
     rulebookLink: '#',
     fullDescription: 'Challenge your fellow CUET students in a FIFA tournament. Players will compete in a knockout format to crown the campus champion.',
@@ -220,7 +220,7 @@ const events = [
   {
     id: "chess-competition",
     title: 'Chess Competition',
-    description: 'Strategic battles of minds [ Intra CUET ]',
+    description: 'Strategic battles of minds [ Only for CUETian ]',
     registerLink: 'https://forms.gle/NKwbKdrKd2t2CJC69',
     rulebookLink: '#',
     fullDescription: 'Test your strategic thinking in our chess tournament. The competition will follow standard chess rules with time controls appropriate for all skill levels.',
@@ -244,7 +244,7 @@ const events = [
   {
     id: "gaming-efootball",
     title: 'Gaming Contest - efootball',
-    description: 'Compete in exciting games [ Intra CUET ]',
+    description: 'Compete in exciting games [ Only for CUETian ]',
     registerLink: 'https://forms.gle/Y2KMNzBFHd5xSwCo7',
     rulebookLink: '#',
     fullDescription: 'Show off your gaming skills in this efootball tournament exclusively for CUET students. Teams of 4 will compete in multiple rounds to determine the ultimate champions.',

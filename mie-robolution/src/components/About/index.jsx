@@ -1,12 +1,14 @@
 // src/components/About/index.jsx
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import logo from "/src/assets/images/about.jpg";
+import CountUp from 'react-countup'; // Import CountUp
+import { useInView } from 'react-intersection-observer'; // Import useInView
 
 const AboutSection = styled.section`
   padding: 5rem 5%;
   background: ${({ theme }) => theme.colors.dark};
-`
+`;
 
 const Content = styled.div`
   display: grid;
@@ -17,7 +19,7 @@ const Content = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const TextContent = styled.div`
   h2 {
@@ -41,7 +43,7 @@ const TextContent = styled.div`
       padding: 0 10px;
     }
   }
-`
+`;
 
 const Stats = styled.div`
   display: grid;
@@ -53,7 +55,7 @@ const Stats = styled.div`
   @media (max-width: 768px) {
     padding: 0 5px;
   }
-`
+`;
 
 const StatItem = styled(motion.div)`
   text-align: center;
@@ -70,7 +72,7 @@ const StatItem = styled(motion.div)`
     text-align: center;
     margin-top: 0;
   }
-`
+`;
 
 const ImageContainer = styled(motion.div)`
   img {
@@ -82,7 +84,7 @@ const ImageContainer = styled(motion.div)`
   @media (max-width: 768px) {
     padding: 0 5px;
   }
-`
+`;
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -99,7 +101,7 @@ const ButtonContainer = styled.div`
   @media screen and (width: 412px) {
     padding: 0 10px;
   }
-`
+`;
 
 const Button = styled(motion.a)`
   display: inline-block;
@@ -122,61 +124,96 @@ const Button = styled(motion.a)`
   @media (max-width: 768px) {
     margin-bottom: 10px;
   }
-`
+`;
 
 const About = () => {
+  // Use useInView to detect when each StatItem is in view
+  const [participantsRef, participantsInView] = useInView({
+    triggerOnce: true, // Only trigger once
+    threshold: 0.5, // Trigger when 50% of the element is in view
+  });
+
+  const [eventsRef, eventsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
   return (
     <AboutSection id="about">
       <Content>
         <TextContent>
           <h2>About CUET MIE & MIE ROBOlution1.0</h2>
           <p>
-          The MIE Department at CUET, established in 2015, addresses the growing demand for automation and industrial innovation in Bangladesh. Integrating mechanical, electronics, and control systems, it prepares 30 students annually for careers in precision engineering, automation, and industrial research. With a strong curriculum and advanced labs, MIE aims to be a hub for innovation and industry-driven research, producing globally competitive engineers.
+            The MIE Department at CUET, established in 2015, addresses the growing demand for automation and industrial innovation in Bangladesh. Integrating mechanical, electronics, and control systems, it prepares 30 students annually for careers in precision engineering, automation, and industrial research. With a strong curriculum and advanced labs, MIE aims to be a hub for innovation and industry-driven research, producing globally competitive engineers.
           </p>
           <p>
-          MIE ROBOlution 1.0 is a first-of-its-kind robotics and automation festival hosted by CUET MIE. It is designed to bring together the brightest minds, challenging them in robotics competitions. The event aims to bridge academia and industry, inspiring the next generation of engineers to take on global technological challenges.
+            MIE ROBOlution 1.0 is a first-of-its-kind robotics and automation festival hosted by CUET MIE. It is designed to bring together the brightest minds, challenging them in robotics competitions. The event aims to bridge academia and industry, inspiring the next generation of engineers to take on global technological challenges.
           </p>
           <p>
-          With a grand prize pool of <b>330,000 BDT</b>, this competition is set to be a groundbreaking event in Bangladesh's robotics and automation landscape.
+            With a grand prize pool of <b>330,000 BDT</b>, this competition is set to be a groundbreaking event in Bangladesh's robotics and automation landscape.
           </p>
           
           <ButtonContainer>
-  <Button 
-    href="https://www.facebook.com/events/9420448124644824"
-    target="_blank" // Opens link in a new tab
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    EVENT ON FACEBOOK
-  </Button>
-  
-  <Button 
-    href="https://www.cuet.ac.bd/dept/mie" 
-    target="_blank" // Opens link in a new tab
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    MORE ON DEPARTMENT
-  </Button>
-</ButtonContainer>
+            <Button 
+              href="https://www.facebook.com/events/9420448124644824"
+              target="_blank"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              EVENT ON FACEBOOK
+            </Button>
+            
+            <Button 
+              href="https://www.cuet.ac.bd/dept/mie" 
+              target="_blank"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              MORE ON DEPARTMENT
+            </Button>
+          </ButtonContainer>
 
-          
           <Stats>
             <StatItem
+              ref={participantsRef} // Attach the ref to detect visibility
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="number">500+</div>
+              <div className="number">
+                {participantsInView ? (
+                  <CountUp
+                    start={0}
+                    end={1500}
+                    duration={2.5}
+                    suffix="+"
+                    separator=","
+                  />
+                ) : (
+                  "0"
+                )}
+              </div>
               <p>Participants</p>
             </StatItem>
             <StatItem
+              ref={eventsRef}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <div className="number">10+</div>
+              <div className="number">
+                {eventsInView ? (
+                  <CountUp
+                    start={0}
+                    end={10}
+                    duration={2.5}
+                    suffix="+"
+                  />
+                ) : (
+                  "0"
+                )}
+              </div>
               <p>Events</p>
             </StatItem>
           </Stats>
@@ -191,7 +228,7 @@ const About = () => {
         </ImageContainer>
       </Content>
     </AboutSection>
-  )
-}
+  );
+};
 
-export default About
+export default About;

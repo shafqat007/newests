@@ -81,17 +81,18 @@ const teamMemberImages = {
 };
 
 const teamMembers = [
-  { name: "Nakib A. Raj", role: "Lead Organizer", email: "u1906002@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.nakib },
-  { name: "Mehedi Hasan Obhi", role: "Logistics & Operations Lead", email: "u1909003@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.mehedi },
-  { name: "Sadek Bin Islam", role: "Logistics & Operations Lead", email: "u1908013@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.sadek },
-  { name: "Anik Saha", role: "Logistics & Operations Lead", email: "u190801@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.anik },
-  { name: "Alif Haider", role: "Marketing & Sponsorship Lead", email: "u1909022@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.alif },
-  { name: "Ibn Zubair", role: "Sports Lead", email: "u1909016@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.jubair },
-  { name: "Al Marzan Sadid", role: "Sports Lead", email: "u1909008@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.marzan },
-  { name: "SK Rakib Hasan", role: "Design Lead", email: "u1909028@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.rakib },
-  { name: "Ashiqur Rahman", role: "Competition Lead", email: "u1906001@student.cuet.ac.bd", phone: "+8801835488814", image: teamMemberImages.ashiqur },
-  { name: "Redwan Rifat", role: "Competition Lead", email: "u1909018@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.redwan },
-  { name: "Shihab Uddin", role: "Finance Lead", email: "u1909259@student.cuet.ac.bd", phone: "123-456-7890", image: teamMemberImages.shihab },
+  { name: "Nakib A. Raj", role: "Lead Organizer", email: "u1909020@student.cuet.ac.bd", phone: "+8801670558956", image: teamMemberImages.nakib },
+  { name: "Ashiqur Rahman", role: "Competition Lead", email: "u1909004@student.cuet.ac.bd", phone: "+8801511001009", image: teamMemberImages.ashiqur },
+  { name: "Redwan Rifat", role: "Competition Lead", email: "u1909018@student.cuet.ac.bd", phone: "+8801511001009", image: teamMemberImages.redwan },
+  { name: "Mehedi Hasan Obhi", role: "Logistics & Operations Lead", email: "u1909030@student.cuet.ac.bd", phone: "+8801630230712", image: teamMemberImages.mehedi },
+  { name: "Sadek Bin Islam", role: "Logistics & Operations Lead", email: "u1909013@student.cuet.ac.bd", phone: "+8801884974197", image: teamMemberImages.sadek },
+  { name: "Anik Saha", role: "Logistics & Operations Lead", email: "u1909001@student.cuet.ac.bd", phone: "+8801531822327", image: teamMemberImages.anik },
+  { name: "Alif Haider", role: "Marketing & Sponsorship Lead", email: "u1909022@student.cuet.ac.bd", phone: "+8801835488814", image: teamMemberImages.alif },
+  { name: "Ibn Zubair", role: "Sports Lead", email: "u1909016@student.cuet.ac.bd", phone: "+8801571786064", image: teamMemberImages.jubair },
+  { name: "Al Marzan Sadid", role: "Sports Lead", email: "u1909009@student.cuet.ac.bd", phone: "8801571786064", image: teamMemberImages.marzan },
+  { name: "SK Rakib Hasan", role: "Design Lead", email: "u1909002@student.cuet.ac.bd", phone: "+8801310678710", image: teamMemberImages.rakib },
+  
+  { name: "Shihab Uddin", role: "Finance Lead", email: "u1909029@student.cuet.ac.bd", phone: "+8801857087582", image: teamMemberImages.shihab },
 ];
 
 const Team = () => {

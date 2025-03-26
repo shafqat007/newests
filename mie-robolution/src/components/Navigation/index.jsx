@@ -1,6 +1,6 @@
 // src/components/Navigation/index.jsx
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Added useNavigate
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -67,7 +67,6 @@ const GoToTopButton = styled(motion.button)`
   z-index: 99;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   font-size: 2.5rem;
-  
   font-weight: bold;
   transition: all 0.3s ease;
 
@@ -92,7 +91,7 @@ const Menu = styled(motion.div)`
   backdrop-filter: blur(10px);
 `;
 
-const MenuItem = styled(motion(Link))`
+const MenuItem = styled(motion.button)` // Changed from motion(Link) to motion.button
   display: block;
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.5rem;
@@ -101,6 +100,10 @@ const MenuItem = styled(motion(Link))`
   padding: 1rem 0;
   transition: color 0.3s ease;
   cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
@@ -115,6 +118,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showGoToTop, setShowGoToTop] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate(); // Added useNavigate
 
   const menuItems = [
     { title: 'Home', to: '/' },
@@ -123,9 +127,10 @@ const Navigation = () => {
     { title: 'Schedule', to: '/#schedule' },
     { title: 'Gallery', to: '/#gallery' },
     { title: 'Sponsors', to: '/#sponsors' },
-    { title: 'Team', to: '/#team' },
-    { title: 'Faculty', to: '/#faculty' },
     { title: 'Campus Ambassador', to: '/#ambassador' },
+    { title: 'Faculty', to: '/#faculty' },
+    { title: 'Team', to: '/#team' },
+   
     { title: 'Contact', to: '/#contact' },
   ];
 
@@ -181,13 +186,23 @@ const Navigation = () => {
 
   const handleClick = (to) => {
     setIsOpen(false); // Close the menu
-    // If already on root, scroll to section; otherwise, navigate
-    if (location.pathname === '/' && to.startsWith('/#')) {
+
+    if (to === '/') {
+      // If navigating to home, just go to root and scroll to top
+      navigate('/');
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    } else if (to.startsWith('/#')) {
+      // If navigating to a section, go to root and scroll to section
       const sectionId = to.substring(2); // Remove "/#" to get ID
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      navigate('/'); // Always navigate to root first
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100); // Small delay to ensure navigation completes
     }
   };
 
@@ -208,8 +223,7 @@ const Navigation = () => {
               {menuItems.map((item, i) => (
                 <MenuItem
                   key={item.title}
-                  to={item.to}
-                  onClick={() => handleClick(item.to)}
+                  onClick={() => handleClick(item.to)} // Use onClick instead of to
                   variants={itemVariants}
                   custom={i}
                   whileHover={{ x: 20 }}
@@ -234,7 +248,6 @@ const Navigation = () => {
             aria-label="Go to top"
           >
             ^
-            
           </GoToTopButton>
         )}
       </AnimatePresence>

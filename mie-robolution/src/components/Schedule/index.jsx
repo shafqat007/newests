@@ -109,37 +109,33 @@ const Schedule = () => {
     day1: {
       date: "17th April - Thursday",
       events: [
-        { time: "08:00 - 08:30 am", event: "T-shirt Distribution" },
-        { time: "08:30 - 09:00 am", event: "Inauguration by Cutting Cake" },
-        { time: "09:00 - 10:00 am", event: "Rally" },
-        { time: "11:00 - 02:00 pm", event: "Technical Seminar" },
-      ]
+        { time: "08:00 - 08:30 am", event: "T-shirt Distribution" }, // Kept as is (not in image)
+        { time: "08:30 - 09:00 am", event: "Inauguration by Cutting Cake" }, // Kept as is (not in image)
+        { time: "09:00 - 10:00 am", event: "Rally" }, // Kept as is (not in image)
+        { time: "10:00 am - 2:00 pm", event: "Industrial 4.0 Seminar" }, // Updated from "Technical Seminar"
+        { time: "2:00 pm - 5:00 pm", event: "FIFA Gaming Event" }, // Added from image
+      ],
     },
     day2: {
       date: "18th April - Friday",
       events: [
-        { time: "09:00 - 09:30 am", event: "Reporting, Reception" },
-        { time: "09:30 - 11:00 am", event: "Robo Soccer (Up to Quarter Final)" },
-        { time: "11:00 - 12:10 pm", event: "Project Presentation" },
-        { time: "12:10 - 01:00 pm", event: "Poster Presentation" },
-        { time: "01:00 - 02:00 pm", event: "Prayer & Lunch Break" },
-        { time: "02:00 - 03:00 pm", event: "Robo Soccer (Final Round)" },
-        { time: "03:00 - 05:00 pm", event: "Techathon" },
-      ]
+        { time: "08:00 am - 5:00 pm", event: "Line Following Robot" }, // Added from image
+        { time: "08:00 am - 5:00 pm", event: "Soccer Bot" }, // Added from image (replaces Robo Soccer)
+        { time: "09:00 am - 5:00 pm", event: "Techathon" }, // Added from image
+        { time: "01:00 - 02:00 pm", event: "Prayer & Lunch Break" }, // Kept as is (not in image, fits in schedule)
+      ],
     },
     day3: {
       date: "19th April - Saturday",
-      events: [
-        { time: "09:00 - 09:30 am", event: "Reporting Time" },
-        { time: "09:30 - 11:00 am", event: "Logo Design Contest" },
-        { time: "11:00 - 01:00 pm", event: "Line Following Robot (Up to Quarter Final)" },
-        { time: "01:00 - 02:00 pm", event: "Prayer & Lunch Break" },
-        { time: "02:00 - 03:00 pm", event: "Line Following Robot (Final Round)" },
-        { time: "03:00 - 04:00 pm", event: "CAD Contest" },
-        { time: "04:00 - 05:00 pm", event: "Gaming (FIFA & eFootball)" },
-        { time: "05:00 - 05:30 pm", event: "Chess Competition" },
-        { time: "05:30 - 11:00 pm", event: "Cultural Night and Band Show" },
-      ]
+      events:[
+        { time: "08:00 am - 5:00 pm", event: "Project Presentation" }, // Added from image
+        { time: "08:00 am - 5:00 pm", event: "Poster Presentation" }, // Added from image
+        { time: "09:00 am - 1:00 pm", event: "CAD Contest" }, // Added from image
+        { time: "01:00 - 02:00 pm", event: "Prayer & Lunch Break" }, // Kept as is (not in image, fits in schedule)
+        { time: "05:00 pm - 10:00 pm", event: "Prize Giving Ceremony and Cultural Event" }, // Updated from "Cultural Night and Band Show"
+      // Kept as is (not in image, but matches event details)
+        { time: "05:00 - 05:30 pm", event: "Chess Competition" }, // Kept as is (not in image, but matches event details)
+      ],
     }
   }
 

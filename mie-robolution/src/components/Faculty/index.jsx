@@ -227,9 +227,7 @@ const Faculty = () => {
                 <a href={`mailto:${faculty.email}`}>
                   <i className="fas fa-envelope"></i>
                 </a>
-                <a href={faculty.phone ? `tel:${faculty.phone}` : "#"}>
-                  <i className="fas fa-phone"></i>
-                </a>
+       
                 <a href={faculty.details} target="_blank" rel="noopener noreferrer">
                   <i className="fas fa-info-circle"></i>
                 </a>

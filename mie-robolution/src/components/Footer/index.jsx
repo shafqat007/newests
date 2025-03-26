@@ -62,8 +62,8 @@ const Footer = () => {
           <h3>Contact Info</h3>
           <p>Department of Mechatronics & Industrial Engineering</p>
           <p>Chittagong University of Engineering & Technology (CUET)</p>
-          <p>Email: headmie@cuet.ac.bd, mierobolution2025@gmail.com</p>
-          <p>Contact: +880 1670-558956</p>
+          <p>Email: headmie@cuet.ac.bd</p>
+          
         </FooterColumn>
 
         <FooterColumn>
