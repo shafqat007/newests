@@ -1,7 +1,7 @@
 // src/components/About/index.jsx
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import logo from "/src/assets/images/about.jpg";
+import logo from "/src/assets/images/ffff.jpg";
 import CountUp from 'react-countup'; // Import CountUp
 import { useInView } from 'react-intersection-observer'; // Import useInView
 

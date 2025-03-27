@@ -364,7 +364,7 @@ const events = [
     title: 'Project Presentation',
     description: 'Showcase your groundbreaking ideas',
     registerLink: 'https://forms.gle/NYw4vc2BvQ9mXDCi8',
-    rulebookLink: 'https://drive.google.com/file/d/1Q_kgy8Q1YvnWdCrVYaLlY-efX4L_60p_/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/11oyQxj1J22YQIbwqNnVk8-5rAjYebmvD/view?usp=sharing',
     fullDescription:
       'Present your innovative projects to a panel of judges from academia and industry. This is a great opportunity to receive feedback and potentially find sponsors for your ideas.',
     date: 'April 19, 2025',
