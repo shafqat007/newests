@@ -351,7 +351,7 @@ const events = [
     title: 'Robo Soccer',
     description: 'Unleash your robot agility',
     registerLink: 'https://forms.gle/DWCHrmtoZauCrFvf7',
-    rulebookLink: 'https://drive.google.com/file/d/1fApq39kvm-vZct68qLpD0Mmf6MLbgcjF/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/1MUtTcpVECumxapybQV2TduNCxqxll-g5/view?usp=sharing',
     fullDescription:
       'Build a soccer-playing robot and compete in our tournament. Your robot must be able to detect the ball, navigate the field, and score goals against opponent robots.',
     date: 'April 18, 2025',
@@ -423,7 +423,7 @@ const events = [
         time: '11:59 AM - 11:59 AM',
         venue: 'Online',
         registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfEmwd7GD3JfvxEMth_F-94g232ebqaM_-8R1ZDn3wg5Njf0w/viewform?usp=header',
-        rulebookLink: 'https://drive.google.com/file/d/1yiEZpSO9n4Jpx4W0_wPSuOjAL_5O19p4/view?usp=sharing',
+        rulebookLink: 'https://drive.google.com/file/d/1lJul6bAX_WmXvwCnW2g5a-m6lE4YjiTm/view?usp=sharing',
       },
       {
         title: 'Phase - 2: Development and Final Presentation',

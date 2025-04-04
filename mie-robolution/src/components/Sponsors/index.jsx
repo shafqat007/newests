@@ -14,7 +14,13 @@ const partnerImages = {
   clubPartner5: new URL('/src/assets/images/daffodil.jpg', import.meta.url).href,
 };
 
-// Styled components remain the same as in your original code
+// Dynamically import club images 6 to 35
+const clubImages = Array.from({ length: 30 }, (_, i) => {
+  if (i < 5) return null; // Skip first 5 as they are already defined
+  return new URL(`/src/assets/images/clubs/${i + 1}.png`, import.meta.url).href;
+}).filter(Boolean);
+
+// Styled components
 const SponsorsSection = styled.section`
   padding: 5rem 5%;
   background: ${({ theme }) => theme.colors.dark};
@@ -97,11 +103,11 @@ const PartnerCard = styled(motion.a)`
   }
 
   img {
-    width: 80px;
-    height: 80px;
+    width: ${({ isRectangular }) => (isRectangular ? '100%' : '80px')};
+    height: ${({ isRectangular }) => (isRectangular ? '100%' : '80px')};
     object-fit: contain;
-    margin-bottom: 1rem;
-    border-radius: 50%;
+    margin-bottom: ${({ isRectangular }) => (isRectangular ? '0' : '1rem')};
+    border-radius: ${({ isRectangular }) => (isRectangular ? '10px' : '50%')};
   }
 
   h4 {
@@ -135,6 +141,68 @@ const Dot = styled.button`
   cursor: pointer;
 `;
 
+const ExpandButton = styled.button`
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.dark};
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: ${({ theme }) => theme.fonts.heading};
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.light};
+    transform: translateY(-2px);
+  }
+`;
+
+const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background: ${({ theme }) => theme.colors.dark};
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1.5rem;
+  cursor: pointer;
+`;
+
+const ModalGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, minmax(200px, 1fr)); /* Default: 1 column for mobile */
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(200px, 1fr)); /* 3 columns for laptop */
+  }
+`;
+
 const BecomeSponsor = styled.div`
   text-align: center;
   margin-top: 4rem;
@@ -162,6 +230,7 @@ const Button = styled.a`
 const Sponsors = () => {
   const [socialMediaIndex, setSocialMediaIndex] = useState(0);
   const [clubIndex, setClubIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const sponsorCategories = {
     title: [{ name: "Coming Soon!", status: "Revealing Soon" }],
@@ -212,6 +281,11 @@ const Sponsors = () => {
         image: partnerImages.clubPartner5,
         url: "",
       },
+      ...Array.from({ length: 22 }, (_, i) => ({
+        name: "",
+        image: clubImages[i],
+        url: "",
+      })),
     ],
   };
 
@@ -228,9 +302,8 @@ const Sponsors = () => {
     const socialMediaInterval = setInterval(() => {
       setSocialMediaIndex((prevIndex) => {
         const nextIndex = prevIndex + 1;
-        // When reaching the end of the original items, reset to the start
         if (nextIndex === partnerCategories.socialMedia.length) {
-          setTimeout(() => setSocialMediaIndex(0), 500); // Match transition duration
+          setTimeout(() => setSocialMediaIndex(0), 500);
         }
         return nextIndex % extendedSocialMedia.length;
       });
@@ -242,15 +315,21 @@ const Sponsors = () => {
     const clubInterval = setInterval(() => {
       setClubIndex((prevIndex) => {
         const nextIndex = prevIndex + 1;
-        // When reaching the end of the original items, reset to the start
         if (nextIndex === partnerCategories.club.length) {
-          setTimeout(() => setClubIndex(0), 500); // Match transition duration
+          setTimeout(() => setClubIndex(0), 500);
         }
         return nextIndex % extendedClub.length;
       });
     }, 3000);
     return () => clearInterval(clubInterval);
   }, [partnerCategories.club.length]);
+
+  // Handler to close modal when clicking outside
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setIsModalOpen(false);
+    }
+  };
 
   return (
     <SponsorsSection id="sponsors">
@@ -284,7 +363,7 @@ const Sponsors = () => {
               animate={{ x: -socialMediaIndex * cardWidth }}
               transition={
                 socialMediaIndex === 0
-                  ? { duration: 0 } // Instant reset
+                  ? { duration: 0 }
                   : { duration: 0.5, ease: "easeInOut" }
               }
             >
@@ -319,7 +398,7 @@ const Sponsors = () => {
               animate={{ x: -clubIndex * cardWidth }}
               transition={
                 clubIndex === 0
-                  ? { duration: 0 } // Instant reset
+                  ? { duration: 0 }
                   : { duration: 0.5, ease: "easeInOut" }
               }
             >
@@ -329,9 +408,10 @@ const Sponsors = () => {
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  isRectangular={idx >= 5}
                 >
                   <img src={partner.image} alt={partner.name} />
-                  <h4>{partner.name}</h4>
+                  {idx < 5 && <h4>{partner.name}</h4>}
                 </PartnerCard>
               ))}
             </CarouselWrapper>
@@ -345,13 +425,44 @@ const Sponsors = () => {
               />
             ))}
           </DotsContainer>
+          <ExpandButton onClick={() => setIsModalOpen(true)}>
+            View All Club Partners
+          </ExpandButton>
         </div>
       </SponsorCategories>
+
+      {isModalOpen && (
+        <ModalOverlay
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={handleOverlayClick} // Close modal when clicking outside
+        >
+          <ModalContent>
+            <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
+            <h2 style={{ color: 'white', textAlign: 'center' }}>All Club Partners</h2>
+            <ModalGrid>
+              {partnerCategories.club.map((partner, idx) => (
+                <PartnerCard
+                  key={`${partner.name}-${idx}`}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  isRectangular={idx >= 5}
+                >
+                  <img src={partner.image} alt={partner.name} />
+                  {idx < 5 && <h4>{partner.name}</h4>}
+                </PartnerCard>
+              ))}
+            </ModalGrid>
+          </ModalContent>
+        </ModalOverlay>
+      )}
 
       <BecomeSponsor>
         <p>Become a partner!</p>
         <Button
-          href="https://www.facebook.com/profile.php?id=61572987875146"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfUoYsqYmTfhPKLihK2IbawdL0tz5oc6Ek0RLYVfp5wgr8AtA/viewform?usp=header"
           target="_blank"
         >
           Become a Sponsor or Partner
