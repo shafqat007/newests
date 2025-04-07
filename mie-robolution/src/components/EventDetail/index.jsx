@@ -419,8 +419,8 @@ const events = [
       {
         title: 'Phase - 1: Idea Submission and Initial Presentation',
         smallDetails: 'Teams submit their project ideas and give a brief presentation.',
-        date: 'April 7 - 9, 2025',
-        time: '11:59 AM - 11:59 AM',
+        date: 'Registration Deadline: April 8, 2025',
+        time: 'Case unveiling: April 9, 2025, 11:59 AM',
         venue: 'Online',
         registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfEmwd7GD3JfvxEMth_F-94g232ebqaM_-8R1ZDn3wg5Njf0w/viewform?usp=header',
         rulebookLink: 'https://drive.google.com/file/d/1lJul6bAX_WmXvwCnW2g5a-m6lE4YjiTm/view?usp=sharing',
@@ -537,7 +537,7 @@ const EventDetail = () => {
   useEffect(() => {
     if (event?.id === 'techathon') {
       // Change the deadline here to your desired date and time
-      const deadline = new Date('April 6, 2025 23:59:59').getTime(); // Modify this line to change the deadline
+      const deadline = new Date('April 8, 2025 23:59:59').getTime(); // Modify this line to change the deadline
       const updateTimer = () => {
         const now = new Date().getTime();
         const distance = deadline - now;
@@ -683,7 +683,7 @@ const EventDetail = () => {
 
           {event.id === 'techathon' && (
             <CountdownContainer>
-              <CountdownTitle>Phase 1 Registration Deadline: 6 April</CountdownTitle>
+              <CountdownTitle>Phase 1 Registration Deadline: 8 April</CountdownTitle>
               {timeLeft.expired ? (
                 <p>Registration has ended!</p>
               ) : (

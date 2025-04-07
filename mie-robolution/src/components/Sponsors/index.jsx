@@ -14,7 +14,7 @@ const partnerImages = {
   clubPartner5: new URL('/src/assets/images/daffodil.jpg', import.meta.url).href,
 };
 
-// Dynamically import club images 6 to 35
+// Dynamically import club images 6 to 35 (including the new 28.png)
 const clubImages = Array.from({ length: 30 }, (_, i) => {
   if (i < 5) return null; // Skip first 5 as they are already defined
   return new URL(`/src/assets/images/clubs/${i + 1}.png`, import.meta.url).href;
@@ -104,16 +104,16 @@ const PartnerCard = styled(motion.a)`
 
   img {
     width: ${({ isRectangular }) => (isRectangular ? '100%' : '80px')};
-    height: ${({ isRectangular }) => (isRectangular ? '100%' : '80px')};
+    height: ${({ isRectangular }) => (isRectangular ? '80%' : '80px')};
     object-fit: contain;
-    margin-bottom: ${({ isRectangular }) => (isRectangular ? '0' : '1rem')};
+    margin-bottom: ${({ isRectangular }) => (isRectangular ? '0.5rem' : '1rem')};
     border-radius: ${({ isRectangular }) => (isRectangular ? '10px' : '50%')};
   }
 
   h4 {
     color: ${({ theme }) => theme.colors.light};
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Increased font size for better visibility */
   }
 
   p {
@@ -122,6 +122,43 @@ const PartnerCard = styled(motion.a)`
     font-style: italic;
     font-size: 0.9rem;
   }
+`;
+
+// Updated arrow buttons - positioned on top of carousel instead of sides
+const ArrowButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.dark};
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 10;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.light};
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+const LeftArrow = styled(ArrowButton)`
+  left: 10px; /* Moved inside the carousel container */
+`;
+
+const RightArrow = styled(ArrowButton)`
+  right: 10px; /* Moved inside the carousel container */
 `;
 
 const DotsContainer = styled.div`
@@ -229,6 +266,7 @@ const Button = styled.a`
 
 const Sponsors = () => {
   const [socialMediaIndex, setSocialMediaIndex] = useState(0);
+  const [segmentIndex, setSegmentIndex] = useState(0);
   const [clubIndex, setClubIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -255,7 +293,7 @@ const Sponsors = () => {
         url: "https://www.facebook.com/info.thecastor",
       },
     ],
-    club: [
+    segment: [
       {
         name: "RMA",
         image: partnerImages.clubPartner1,
@@ -276,12 +314,14 @@ const Sponsors = () => {
         image: partnerImages.clubPartner4,
         url: "https://www.facebook.com/cadsocietycuet",
       },
+    ],
+    club: [
       {
         name: "Daffodil Robotics Club",
         image: partnerImages.clubPartner5,
         url: "",
       },
-      ...Array.from({ length: 22 }, (_, i) => ({
+      ...Array.from({ length: 23 }, (_, i) => ({
         name: "",
         image: clubImages[i],
         url: "",
@@ -295,6 +335,10 @@ const Sponsors = () => {
   const extendedSocialMedia = [
     ...partnerCategories.socialMedia,
     ...partnerCategories.socialMedia,
+  ];
+  const extendedSegment = [
+    ...partnerCategories.segment,
+    ...partnerCategories.segment,
   ];
   const extendedClub = [...partnerCategories.club, ...partnerCategories.club];
 
@@ -312,6 +356,19 @@ const Sponsors = () => {
   }, [partnerCategories.socialMedia.length]);
 
   useEffect(() => {
+    const segmentInterval = setInterval(() => {
+      setSegmentIndex((prevIndex) => {
+        const nextIndex = prevIndex + 1;
+        if (nextIndex === partnerCategories.segment.length) {
+          setTimeout(() => setSegmentIndex(0), 500);
+        }
+        return nextIndex % extendedSegment.length;
+      });
+    }, 3000);
+    return () => clearInterval(segmentInterval);
+  }, [partnerCategories.segment.length]);
+
+  useEffect(() => {
     const clubInterval = setInterval(() => {
       setClubIndex((prevIndex) => {
         const nextIndex = prevIndex + 1;
@@ -323,6 +380,49 @@ const Sponsors = () => {
     }, 3000);
     return () => clearInterval(clubInterval);
   }, [partnerCategories.club.length]);
+
+  // Navigation handlers for arrows
+  const handlePrevSocialMedia = () => {
+    setSocialMediaIndex((prevIndex) => {
+      const nextIndex = prevIndex - 1;
+      return nextIndex < 0 ? partnerCategories.socialMedia.length - 1 : nextIndex;
+    });
+  };
+
+  const handleNextSocialMedia = () => {
+    setSocialMediaIndex((prevIndex) => {
+      const nextIndex = prevIndex + 1;
+      return nextIndex % partnerCategories.socialMedia.length;
+    });
+  };
+
+  const handlePrevSegment = () => {
+    setSegmentIndex((prevIndex) => {
+      const nextIndex = prevIndex - 1;
+      return nextIndex < 0 ? partnerCategories.segment.length - 1 : nextIndex;
+    });
+  };
+
+  const handleNextSegment = () => {
+    setSegmentIndex((prevIndex) => {
+      const nextIndex = prevIndex + 1;
+      return nextIndex % partnerCategories.segment.length;
+    });
+  };
+
+  const handlePrevClub = () => {
+    setClubIndex((prevIndex) => {
+      const nextIndex = prevIndex - 1;
+      return nextIndex < 0 ? partnerCategories.club.length - 1 : nextIndex;
+    });
+  };
+
+  const handleNextClub = () => {
+    setClubIndex((prevIndex) => {
+      const nextIndex = prevIndex + 1;
+      return nextIndex % partnerCategories.club.length;
+    });
+  };
 
   // Handler to close modal when clicking outside
   const handleOverlayClick = (e) => {
@@ -359,6 +459,7 @@ const Sponsors = () => {
         <div>
           <CategoryTitle>SOCIAL MEDIA PARTNERS</CategoryTitle>
           <CarouselContainer>
+            <LeftArrow onClick={handlePrevSocialMedia}>&lt;</LeftArrow>
             <CarouselWrapper
               animate={{ x: -socialMediaIndex * cardWidth }}
               transition={
@@ -379,6 +480,7 @@ const Sponsors = () => {
                 </PartnerCard>
               ))}
             </CarouselWrapper>
+            <RightArrow onClick={handleNextSocialMedia}>&gt;</RightArrow>
           </CarouselContainer>
           <DotsContainer>
             {partnerCategories.socialMedia.map((_, idx) => (
@@ -392,8 +494,46 @@ const Sponsors = () => {
         </div>
 
         <div>
+          <CategoryTitle>SEGMENT PARTNERS</CategoryTitle>
+          <CarouselContainer>
+            <LeftArrow onClick={handlePrevSegment}>&lt;</LeftArrow>
+            <CarouselWrapper
+              animate={{ x: -segmentIndex * cardWidth }}
+              transition={
+                segmentIndex === 0
+                  ? { duration: 0 }
+                  : { duration: 0.5, ease: "easeInOut" }
+              }
+            >
+              {extendedSegment.map((partner, idx) => (
+                <PartnerCard
+                  key={`${partner.name}-${idx}`}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={partner.image} alt={partner.name} />
+                  <h4>{partner.name}</h4>
+                </PartnerCard>
+              ))}
+            </CarouselWrapper>
+            <RightArrow onClick={handleNextSegment}>&gt;</RightArrow>
+          </CarouselContainer>
+          <DotsContainer>
+            {partnerCategories.segment.map((_, idx) => (
+              <Dot
+                key={idx}
+                active={idx === (segmentIndex % partnerCategories.segment.length)}
+                onClick={() => setSegmentIndex(idx)}
+              />
+            ))}
+          </DotsContainer>
+        </div>
+
+        <div>
           <CategoryTitle>CLUB PARTNERS</CategoryTitle>
           <CarouselContainer>
+            <LeftArrow onClick={handlePrevClub}>&lt;</LeftArrow>
             <CarouselWrapper
               animate={{ x: -clubIndex * cardWidth }}
               transition={
@@ -408,13 +548,14 @@ const Sponsors = () => {
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  isRectangular={idx >= 5}
+                  isRectangular={idx >= 1} // Changed to idx >= 1 since Daffodil is the only named club now
                 >
                   <img src={partner.image} alt={partner.name} />
-                  {idx < 5 && <h4>{partner.name}</h4>}
+                  {idx === 0 && <h4>{partner.name}</h4>} {/* Only show name for Daffodil */}
                 </PartnerCard>
               ))}
             </CarouselWrapper>
+            <RightArrow onClick={handleNextClub}>&gt;</RightArrow>
           </CarouselContainer>
           <DotsContainer>
             {partnerCategories.club.map((_, idx) => (
@@ -436,7 +577,7 @@ const Sponsors = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={handleOverlayClick} // Close modal when clicking outside
+          onClick={handleOverlayClick}
         >
           <ModalContent>
             <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
@@ -448,10 +589,10 @@ const Sponsors = () => {
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  isRectangular={idx >= 5}
+                  isRectangular={idx >= 1}
                 >
                   <img src={partner.image} alt={partner.name} />
-                  {idx < 5 && <h4>{partner.name}</h4>}
+                  {idx === 0 && <h4>{partner.name}</h4>}
                 </PartnerCard>
               ))}
             </ModalGrid>
