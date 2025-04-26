@@ -15,7 +15,7 @@ const partnerImages = {
 };
 
 // Dynamically import club images 6 to 35 (including the new 28.png)
-const clubImages = Array.from({ length: 30 }, (_, i) => {
+const clubImages = Array.from({ length: 31 }, (_, i) => {
   if (i < 5) return null; // Skip first 5 as they are already defined
   return new URL(`/src/assets/images/clubs/${i + 1}.png`, import.meta.url).href;
 }).filter(Boolean);

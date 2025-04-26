@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-// Existing styled components (unchanged except for countdown-related adjustments)
 const EventDetailSection = styled.section`
   padding: 5rem 5%;
   background: ${({ theme }) => theme.colors.dark};
@@ -235,10 +234,9 @@ const PhaseDescription = styled.p`
   margin-bottom: 1rem;
 `;
 
-// Modified styled components for countdown timer to fix mobile UI
 const CountdownContainer = styled.div`
   text-align: center;
-  margin: 0 auto 2rem auto; /* Update margin to ensure horizontal centering */
+  margin: 0 auto 2rem auto;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(198, 230, 5, 0.1);
@@ -261,8 +259,8 @@ const CountdownTitle = styled.h3`
 const CountdownTimer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 0.8rem; /* Reduced gap for mobile */
-  font-size: 1.3rem; /* Slightly reduced font size */
+  gap: 0.8rem;
+  font-size: 1.3rem;
   color: ${({ theme }) => theme.colors.light};
 
   @media (max-width: 480px) {
@@ -274,13 +272,13 @@ const CountdownUnit = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 50px; /* Reduced min-width for mobile */
-  padding: 0.4rem; /* Reduced padding */
+  min-width: 50px;
+  padding: 0.4rem;
   background: rgba(198, 230, 5, 0.1);
   border-radius: 5px;
 
   @media (max-width: 480px) {
-    min-width: 45px; /* Further reduced for smaller screens */
+    min-width: 45px;
     padding: 0.3rem;
   }
 `;
@@ -288,7 +286,7 @@ const CountdownUnit = styled.div`
 const CountdownValue = styled.span`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.primary};
-  font-size: 1.2rem; /* Slightly reduced font size */
+  font-size: 1.2rem;
 
   @media (max-width: 480px) {
     font-size: 1rem;
@@ -296,7 +294,7 @@ const CountdownValue = styled.span`
 `;
 
 const CountdownLabel = styled.span`
-  font-size: 0.8rem; /* Slightly reduced font size */
+  font-size: 0.8rem;
   color: ${({ theme }) => theme.colors.light};
 
   @media (max-width: 480px) {
@@ -304,7 +302,6 @@ const CountdownLabel = styled.span`
   }
 `;
 
-// Event images mapping (unchanged)
 const eventImages = {
   'technical-seminar': new URL('/src/assets/images/4.png', import.meta.url).href,
   'line-following-robot': new URL('/src/assets/images/lfr.png', import.meta.url).href,
@@ -319,7 +316,6 @@ const eventImages = {
   'chess-competition': new URL('/src/assets/images/chess1.png', import.meta.url).href
 };
 
-// Updated events array (unchanged)
 const events = [
   {
     id: 'technical-seminar',
@@ -328,7 +324,7 @@ const events = [
     detailsLink: 'https://www.facebook.com/events/9420448124644824',
     fullDescription:
       'Join our technical seminar where industry experts will share valuable insights and knowledge on the latest technological trends and innovations. Attendance is open to all with no registration required.',
-    date: 'April 17, 2025',
+    date: 'May 8, 2025',
     time: '10:00 AM - 2:00 PM',
     venue: 'Auditorium',
     speakers: ['Shall be announced soon', 'Stay tuned for updates'],
@@ -338,36 +334,36 @@ const events = [
     title: 'Line Following Robot',
     description: 'Test your robot precision and speed',
     registerLink: 'https://forms.gle/YYtVH2fviyY9rU4MA',
-    rulebookLink: 'https://drive.google.com/file/d/15YVsyN5tIv-AIxJcSZHAUlxn-d8OG8aD/view?usp=sharing',
+    rulebookLink: 'https://drive.google.com/file/d/1NDvdd9CY3CGDg1eoLi6rJxQ2Dk-MEWmX/view?usp=drive_link',
     fullDescription:
       'Design a robot that can autonomously follow a line track with precision and speed. The competition will test your engineering skills in building sensors and implementing control algorithms.',
-    date: 'April 18, 2025',
+    date: 'May 9, 2025',
     time: '8:00 AM - 5:00 PM',
     venue: 'TSC Third Floor',
-    prizes: ['Total Prize Pool: 48,000Tk', 'Reg Fee: 2040Tk'],
+    prizes: ['Total Prize Pool: 50,000Tk', 'Reg Fee: 2040Tk'],
   },
   {
     id: 'robo-soccer',
     title: 'Robo Soccer',
     description: 'Unleash your robot agility',
     registerLink: 'https://forms.gle/DWCHrmtoZauCrFvf7',
-    rulebookLink: 'https://drive.google.com/file/d/1MUtTcpVECumxapybQV2TduNCxqxll-g5/view?usp=sharing',
+    rulebookLink: 'https://drive.google.com/file/d/1j3e3ge9WgrtKnyPQZfPk9_n5AA4-qGrf/view?usp=drive_link',
     fullDescription:
       'Build a soccer-playing robot and compete in our tournament. Your robot must be able to detect the ball, navigate the field, and score goals against opponent robots.',
-    date: 'April 18, 2025',
+    date: 'May 9, 2025',
     time: '8:00 AM - 5:00 PM',
     venue: 'Basketball Ground',
-    prizes: ['Total Prize Pool: 60,000Tk', 'Reg Fee: 2240Tk'],
+    prizes: ['Total Prize Pool: 70,000Tk', 'Reg Fee: 2240Tk'],
   },
   {
     id: 'project-presentation',
     title: 'Project Presentation',
     description: 'Showcase your groundbreaking ideas',
     registerLink: 'https://forms.gle/NYw4vc2BvQ9mXDCi8',
-    rulebookLink: 'https://drive.google.com/file/d/11oyQxj1J22YQIbwqNnVk8-5rAjYebmvD/view?usp=sharing',
+    rulebookLink: 'https://drive.google.com/file/d/1u8x-tnwTjZkOeNdQDIGX2HI8BIsfelyd/view?usp=drive_link',
     fullDescription:
       'Present your innovative projects to a panel of judges from academia and industry. This is a great opportunity to receive feedback and potentially find sponsors for your ideas.',
-    date: 'April 19, 2025',
+    date: 'May 10, 2025',
     time: '8:00 AM - 5:00 PM',
     venue: 'TSC Third Floor',
     judgingCriteria: ['Innovation', 'Technical Feasibility', 'Presentation Quality', 'Potential Impact'],
@@ -380,29 +376,29 @@ const events = [
     description: 'Test your design skills',
     fullDescription:
       'Demonstrate your Computer-Aided Design expertise by creating 3D models based on given specifications within a limited time frame.',
-    date: 'April 18 - 19, 2025',
+    date: 'April 27 - May 10, 2025',
     time: 'Multiple Phases',
     venue: 'Online & PME Classroom#2',
-    prizes: ['Total Prize Pool: 27,000Tk', 'Reg Fee: 410Tk'],
+    prizes: ['Total Prize Pool: 27,000Tk', 'Reg Fee - Preli: 105Tk Final: 410Tk'],
     phases: [
       {
         title: 'Phase - 1: Preliminary Design Submission',
-        smallDetails: 'Submit your initial CAD design based on the provided problem statement.',
-        date: 'April 18, 2025',
-        time: '9:00 AM - 12:00 PM',
+        smallDetails: 'The online selection task will be emailed to all team members on April 27, 2025, at 6:00 PM. Teams must complete the task using SOLIDWORKS (versions 2020-2024) within 48 hours, by April 29, 2025, at 6:00 PM. Participants can use free online resources.',
+        date: 'April 27 - April 29, 2025',
+        time: 'Email at 6:00 PM on April 27, ends at 6:00 PM on April 29',
         venue: 'Online',
         registerLink: 'https://forms.gle/uqPyHMnkznA2rn1h8',
-        rulebookLink: 'https://drive.google.com/file/d/1ryXK4ahBcsk0f9uR-wwNcU0d16-YXIHf/view?usp=drive_link',
+        rulebookLink: 'https://drive.google.com/file/d/1rwgfEWQHGBb-evqX__VIpOjT0R2wXIVF/view?usp=drive_link',
       },
       {
         title: 'Phase - 2: Final Design and Presentation',
         smallDetails: 'Refine your design and present it to the judges.',
-        date: 'April 19, 2025',
+        date: 'May 10, 2025',
         time: '9:00 AM - 1:00 PM',
         venue: 'PME Classroom#2',
       },
     ],
-    software: ['Solidworks version 2020 or later'],
+    software: ['SOLIDWORKS versions 2020-2024'],
   },
   {
     id: 'techathon',
@@ -410,7 +406,7 @@ const events = [
     description: 'Solve real-world challenges',
     fullDescription:
       'A 24-hour hackathon where teams develop solutions to real-world problems provided by industry partners. Food and refreshments will be provided.',
-    date: 'April 7 - 18, 2025',
+    date: 'April 24 - 9 May , 2025',
     time: '24 hours',
     venue: 'Two Phases: Online & CUET',
     prizes: ['Total Prize Pool: 100,000Tk'],
@@ -419,56 +415,19 @@ const events = [
       {
         title: 'Phase - 1: Idea Submission and Initial Presentation',
         smallDetails: 'Teams submit their project ideas and give a brief presentation.',
-        date: 'Registration Deadline: April 8, 2025',
-        time: 'Case unveiling: April 9, 2025, 11:59 AM',
+        date: 'Registration Deadline: April 24, 2025',
+        time: 'Case unveiling: April 25, 2025, 6 PM',
         venue: 'Online',
-        registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfEmwd7GD3JfvxEMth_F-94g232ebqaM_-8R1ZDn3wg5Njf0w/viewform?usp=header',
-        rulebookLink: 'https://drive.google.com/file/d/1lJul6bAX_WmXvwCnW2g5a-m6lE4YjiTm/view?usp=sharing',
+        registerLink: 'https://drive.google.com/file/d/1EbRa_KsxUhyAlSnpNBOxzNzrka6CV7cX/view?usp=sharing',
+        rulebookLink: 'https://drive.google.com/file/d/1DNvzbIAOCZA3uw-RV9RW_ozDg7Jeh1Sr/view?usp=drive_link',
       },
       {
         title: 'Phase - 2: Development and Final Presentation',
         smallDetails: 'Teams develop their solutions and present the final product.',
-        date: 'April 18, 2025',
+        date: 'May 9, 2025',
         time: '09:00 AM - 05:00 PM',
         venue: 'PME Classroom#3',
       },
-    ],
-  },
-  {
-    id: 'logo-design-contest',
-    title: 'Logo Design Contest',
-    description: 'Show your creative prowess',
-    registerLink: 'https://forms.gle/V3zXV2A79VVwNfzE7',
-    rulebookLink: 'https://drive.google.com/file/d/1Aj-ANehpddV4xdRK6-hg40vfWKXI0IMx/view?usp=sharing',
-    fullDescription:
-      'Design a logo for our upcoming university initiative. The winning design will be officially adopted and the designer will be credited in all future publications.',
-    date: 'April 10, 2025 is deadline',
-    time: '11:59 PM',
-    venue: 'Online, Open to All',
-    prize: ['Total Prize Pool: 5,000Tk', ' Reg Fee: 305Tk'],
-  },
-  {
-    id: 'poster-presentation',
-    title: 'Poster Presentation',
-    description: 'Present your research visually',
-    registerLink: 'https://forms.gle/ZM5cSoBHDBYzaTrR7',
-    rulebookLink: 'https://drive.google.com/file/d/1JMGwnrqcVsVNGtGxhNV0ZOojl_oW9M_S/view?usp=sharing',
-    fullDescription:
-      'Create and present a research poster on your ongoing or completed research project. This is an excellent opportunity to network with peers and receive valuable feedback.',
-    date: 'April 19, 2025',
-    time: '8:00 AM - 5:00 PM',
-    venue: 'Basketball Ground',
-    prize: ['Total Prize Pool: 20,000Tk,', ' Reg Fee: 1020Tk'],
-    categories: [
-      'Next-Generation Robotics in Industrial Automation',
-      'The Future of Smart Manufacturing: Industry 4.0 & Beyond',
-      'AI and Machine Learning Applications in Engineering',
-      'Autonomous Systems: From Self-Driving Cars to Smart Factories',
-      'Sustainable Engineering: Innovations for a Greener Future',
-      'Human-Robot Collaboration: The Rise of Cobots',
-      'The Role of Mechatronics in Space Exploration',
-      'Advanced Sensors and Control Systems in Modern Engineering',
-      'The Impact of IoT on Industrial Efficiency',
     ],
   },
   {
@@ -476,11 +435,11 @@ const events = [
     title: 'Gaming Contest - efootball',
     description: 'Compete in exciting games [ Only for CUETian ]',
     registerLink: 'https://forms.gle/CeyrUf1eeqSqJ8PE9',
-    rulebookLink: 'https://drive.google.com/file/d/13N9Qd4Xbn9Fff1_cOLoMTdVeCiUg5PpM/view?usp=drive_link',
+    rulebookLink: 'https://drive.google swap.com/file/d/1F8Phy3auc33qLaj9dKcUWXway7TRwsn7/view?usp=drive_link',
     fullDescription:
       'Show off your gaming skills in this efootball tournament exclusively for CUET students. Teams of 4 will compete in multiple rounds to determine the ultimate champions.',
-    date: 'April 17, 2025',
-    time: '2:00 PM - 5:00 PM',
+    date: 'April 24 - 26, 2025',
+    time: 'Registration Deadline: April 22, 2025',
     venue: 'PME Classroom',
     prizes: ['Total Prize Pool: 4,000Tk', ' Reg Fee: 55Tk'],
   },
@@ -489,11 +448,11 @@ const events = [
     title: 'Gaming Contest - FIFA',
     description: 'Compete in exciting games [ Only for CUETian ]',
     registerLink: 'https://forms.gle/TnsZquKuWdb4kZ5i6',
-    rulebookLink: 'https://drive.google.com/file/d/1kj7zJs32nTBtWVqEgl7q7ll3DCqZ9RLX/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/1OZosGKBIGN1ZfDsOnbZQFGuypAxqylkM/view?usp=drive_link',
     fullDescription:
       'Challenge your fellow CUET students in a FIFA tournament. Players will compete in a knockout format to crown the campus champion.',
-    date: 'April 17, 2025',
-    time: '2:00 PM - 5:00 PM',
+    date: 'April 24 - 26, 2025',
+    time: 'Registration Deadline: April 22, 2025',
     venue: 'PME Classroom',
     prizes: ['Total Prize Pool: 6,000Tk', ' Reg Fee: 105Tk'],
   },
@@ -502,10 +461,10 @@ const events = [
     title: 'Chess Competition',
     description: 'Strategic battles of minds [ Only for CUETian ]',
     registerLink: 'https://forms.gle/E9fwJiYcDQCC9u34A',
-    rulebookLink: 'https://drive.google.com/file/d/16MVHTSt2gJy5cZHbJaEXyBIWTe2JmzII/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/1F_U7akF6gmUwgOHXdQOxlloHm5TbHIxl/view?usp=drive_link',
     fullDescription:
       'Test your strategic thinking in our chess tournament. The competition will follow standard chess rules with time controls appropriate for all skill levels.',
-    date: 'April 19, 2025',
+    date: 'May 10, 2025',
     time: '5:00 PM - 5:30 PM',
     venue: 'CUET TSC',
     format: 'Swiss-system tournament',
@@ -513,7 +472,6 @@ const events = [
   },
 ];
 
-// Add notice to all events' fullDescription (unchanged)
 events.forEach((event) => {
   event.fullDescription += ' Your confirmation mail & further details shall be sent through your team’s Gmail from registration form.';
 });
@@ -533,11 +491,9 @@ const EventDetail = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  // Countdown timer logic for Techathon Phase 1
   useEffect(() => {
     if (event?.id === 'techathon') {
-      // Change the deadline here to your desired date and time
-      const deadline = new Date('April 8, 2025 23:59:59').getTime(); // Modify this line to change the deadline
+      const deadline = new Date('April 24, 2025 23:59:59').getTime();
       const updateTimer = () => {
         const now = new Date().getTime();
         const distance = deadline - now;
@@ -683,9 +639,21 @@ const EventDetail = () => {
 
           {event.id === 'techathon' && (
             <CountdownContainer>
-              <CountdownTitle>Phase 1 Registration Deadline: 8 April</CountdownTitle>
+              <CountdownTitle>Phase 1 Registration Deadline: 24 April</CountdownTitle>
               {timeLeft.expired ? (
-                <p>Registration has ended!</p>
+                <div>
+                  <p>Phase 1 Case is published</p>
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+  <ButtonGroup>
+    <Button 
+      onClick={() => window.open('https://drive.google.com/file/d/1EbRa_KsxUhyAlSnpNBOxzNzrka6CV7cX/view', '_blank')} 
+      primary
+    >
+      View Case Details
+    </Button>
+  </ButtonGroup>
+</div>
+                </div>
               ) : (
                 <CountdownTimer>
                   <CountdownUnit>
@@ -874,7 +842,7 @@ const EventDetail = () => {
                     ) : (
                       <>
                         <Button onClick={() => handleButtonClick('register', phase.registerLink)} primary>
-                          Register Now
+                          {event.id === 'techathon' ? 'View Case Details' : 'Register Now'}
                         </Button>
                         <Button onClick={() => handleButtonClick('rulebook', phase.rulebookLink)}>
                           Download Rulebook

@@ -167,7 +167,7 @@ const events = [
     time: '10:00 AM - 6:00 PM',
     venue: 'Sports Complex',
     prizes: ['1st Place: $600', '2nd Place: $350', '3rd Place: $200'],
-    prizeMoney: "60,000Tk"
+    prizeMoney: "70,000Tk"
   },
   {
     id: "line-following-robot",
@@ -180,7 +180,7 @@ const events = [
     time: '9:00 AM - 4:00 PM',
     venue: 'Robotics Lab',
     prizes: ['1st Place: $500', '2nd Place: $300', '3rd Place: $150'],
-    prizeMoney: "48,000Tk"
+    prizeMoney: "50,000Tk"
   },
   {
     id: "project-presentation",
@@ -208,19 +208,7 @@ const events = [
     software: ['AutoCAD', 'SolidWorks', 'Fusion 360'],
     prizeMoney: "27,000Tk"
   },
-  {
-    id: "poster-presentation",
-    title: 'Poster Presentation',
-    description: 'Present your research visually',
-    registerLink: 'https://forms.gle/fmXA5gfS1eJxsjYq6',
-    rulebookLink: '#',
-    fullDescription: 'Create and present a research poster on your ongoing or completed research project. This is an excellent opportunity to network with peers and receive valuable feedback.',
-    date: 'March 22, 2025',
-    time: '1:00 PM - 5:00 PM',
-    venue: 'Exhibition Hall',
-    categories: ['Engineering', 'Computer Science', 'Environmental Science', 'Biotechnology'],
-    prizeMoney: "20,000Tk"
-  },
+  
   {
     id: "gaming-fifa",
     title: 'Gaming Contest - FIFA',
@@ -247,19 +235,7 @@ const events = [
     format: 'Swiss-system tournament with 5 rounds',
     prizeMoney: "6,000Tk"
   },
-  {
-    id: "logo-design-contest",
-    title: 'Logo Design Contest',
-    description: 'Show your creative prowess',
-    registerLink: 'https://forms.gle/QNsrHGox3EsSLSwn7',
-    rulebookLink: '#',
-    fullDescription: 'Design a logo for our upcoming university initiative. The winning design will be officially adopted and the designer will be credited in all future publications.',
-    date: 'March 15, 2025',
-    time: 'Submit by 6:00 PM',
-    venue: 'Online Submission',
-    prize: 'Winner: $250 and official recognition',
-    prizeMoney: "5,000Tk"
-  },
+  
   {
     id: "gaming-efootball",
     title: 'Gaming Contest - efootball',

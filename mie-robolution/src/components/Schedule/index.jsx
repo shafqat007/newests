@@ -107,7 +107,7 @@ const Schedule = () => {
   // Updated event names to match your provided list
   const scheduleData = {
     day1: {
-      date: "17th April - Thursday",
+      date: "May 8 - Tursday",
       events: [
         { time: "08:00 - 08:30 am", event: "T-shirt Distribution" }, // Kept as is (not in image)
         { time: "08:30 - 09:00 am", event: "Inauguration by Cutting Cake" }, // Kept as is (not in image)
@@ -117,7 +117,7 @@ const Schedule = () => {
       ],
     },
     day2: {
-      date: "18th April - Friday",
+      date: "May 9 - Friday",
       events: [
         { time: "08:00 am - 5:00 pm", event: "Line Following Robot" }, // Added from image
         { time: "08:00 am - 5:00 pm", event: "Soccer Bot" }, // Added from image (replaces Robo Soccer)
@@ -126,10 +126,10 @@ const Schedule = () => {
       ],
     },
     day3: {
-      date: "19th April - Saturday",
+      date: "May 10 - Saturday",
       events:[
         { time: "08:00 am - 5:00 pm", event: "Project Presentation" }, // Added from image
-        { time: "08:00 am - 5:00 pm", event: "Poster Presentation" }, // Added from image
+         // Added from image
         { time: "09:00 am - 1:00 pm", event: "CAD Contest" }, // Added from image
         { time: "01:00 - 02:00 pm", event: "Prayer & Lunch Break" }, // Kept as is (not in image, fits in schedule)
         { time: "05:00 pm - 10:00 pm", event: "Prize Giving Ceremony and Cultural Event" }, // Updated from "Cultural Night and Band Show"

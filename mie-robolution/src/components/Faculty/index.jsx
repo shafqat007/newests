@@ -1,6 +1,86 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
+// Guest Section Styling
+const GuestSection = styled.section`
+  padding: 4rem 5%;
+  background: ${({ theme }) => theme.colors.dark};
+  
+`
+
+const GuestGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px)); /* Wider min-width for guest cards */
+  gap: 2rem;
+  margin-top: 2rem;
+  justify-content: center; /* Center the grid items */
+`
+
+const GuestCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.08); /* Slightly different background for distinction */
+  border: 1px solid rgba(198, 230, 5, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 100%;
+`
+
+const GuestImageWrapper = styled.a`
+  display: block;
+  width: 100%;
+  cursor: pointer;
+`
+
+const GuestImage = styled.div`
+  width: 100%;
+  height: 300px; /* Taller image for guest cards */
+  background: #222;
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+`
+
+const GuestInfo = styled.div`
+  padding: 1.5rem; /* More padding for larger card */
+`
+
+const GuestNameLink = styled.a`
+  text-decoration: none;
+  cursor: pointer;
+  
+  &:hover h3 {
+    text-decoration: underline;
+  }
+`
+
+const GuestName = styled.h3`
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: 0.4rem;
+  font-size: 1.3rem; /* Larger font size */
+`
+
+const GuestRole = styled.p`
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+`
+
+const GuestContactInfo = styled.div`
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  
+  a {
+    color: ${({ theme }) => theme.colors.light};
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+`
+
+// Faculty Section Styling (unchanged)
 const FacultySection = styled.section`
   padding: 5rem 5%;
   background: ${({ theme }) => theme.colors.dark};
@@ -90,11 +170,25 @@ const facultyImages = {
   naimur: new URL('/src/assets/images/faculty/naimur.jpg', import.meta.url).href,
   tasmia: new URL('/src/assets/images/faculty/tasmia.jpg', import.meta.url).href,
   nusrat: new URL('/src/assets/images/faculty/nusrat.jpg', import.meta.url).href,
+  jamal : new URL('/src/assets/images/faculty/jamal.jpg', import.meta.url).href,
 };
 
 // Default placeholder for any missing images
 const placeholderImage = "https://via.placeholder.com/300x400";
 
+// Guest data
+const guestMembers = [
+  {
+    name: "Professor Dr. Jamal Uddin Ahamed",
+    role: "Director, Institute of Energy Technology - CUET",
+   
+    image: facultyImages.jamal, // Use placeholder since no specific image is provided
+    details: "https://www.cuet.ac.bd/members/9",
+    imageKey: "jamal"
+  }
+];
+
+// Faculty data (unchanged)
 const facultyMembers = [
   { 
     name: "Dr. Prasanjit Das", 
@@ -199,44 +293,90 @@ const facultyMembers = [
 
 const Faculty = () => {
   // Function to get the correct image or fallback to placeholder if missing
-  const getImage = (faculty) => {
-    return faculty.image || placeholderImage;
+  const getImage = (person) => {
+    return person.image || placeholderImage;
   };
 
   return (
-    <FacultySection id="faculty">
-      <h2>Our Faculty</h2>
-      <FacultyGrid>
-        {facultyMembers.map((faculty, index) => (
-          <FacultyCard
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <FacultyImageWrapper href={faculty.details} target="_blank" rel="noopener noreferrer">
-              <FacultyImage src={getImage(faculty)} />
-            </FacultyImageWrapper>
-            <FacultyInfo>
-              <FacultyNameLink href={faculty.details} target="_blank" rel="noopener noreferrer">
-                <FacultyName>{faculty.name}</FacultyName>
-              </FacultyNameLink>
-              <FacultyRole>{faculty.role}</FacultyRole>
-              <ContactInfo>
-                <a href={`mailto:${faculty.email}`}>
-                  <i className="fas fa-envelope"></i>
-                </a>
-       
-                <a href={faculty.details} target="_blank" rel="noopener noreferrer">
-                  <i className="fas fa-info-circle"></i>
-                </a>
-              </ContactInfo>
-            </FacultyInfo>
-          </FacultyCard>
-        ))}
-      </FacultyGrid>
-    </FacultySection>
+    <>
+      {/* Guest Section */}
+      <GuestSection id="guests">
+        <h2>Guests</h2>
+        <GuestGrid>
+          {guestMembers.map((guest, index) => (
+            <GuestCard
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <GuestImageWrapper href={guest.details} target="_blank" rel="noopener noreferrer">
+                <GuestImage src={getImage(guest)} />
+              </GuestImageWrapper>
+              <GuestInfo>
+                <GuestNameLink href={guest.details} target="_blank" rel="noopener noreferrer">
+                  <GuestName>{guest.name}</GuestName>
+                </GuestNameLink>
+                <GuestRole>{guest.role}</GuestRole>
+                <GuestContactInfo>
+                  <a href={`mailto:${guest.email}`}>
+                    <i className="fas fa-envelope"></i>
+                  </a>
+                  {guest.phone && (
+                    <a href={`tel:${guest.phone}`}>
+                      <i className="fas fa-phone"></i>
+                    </a>
+                  )}
+                  <a href={guest.details} target="_blank" rel="noopener noreferrer">
+                    <i className="fas fa-info-circle"></i>
+                  </a>
+                </GuestContactInfo>
+              </GuestInfo>
+            </GuestCard>
+          ))}
+        </GuestGrid>
+      </GuestSection>
+
+      {/* Faculty Section */}
+      <FacultySection id="faculty">
+        <h2>Our Faculty</h2>
+        <FacultyGrid>
+          {facultyMembers.map((faculty, index) => (
+            <FacultyCard
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <FacultyImageWrapper href={faculty.details} target="_blank" rel="noopener noreferrer">
+                <FacultyImage src={getImage(faculty)} />
+              </FacultyImageWrapper>
+              <FacultyInfo>
+                <FacultyNameLink href={faculty.details} target="_blank" rel="noopener noreferrer">
+                  <FacultyName>{faculty.name}</FacultyName>
+                </FacultyNameLink>
+                <FacultyRole>{faculty.role}</FacultyRole>
+                <ContactInfo>
+                  <a href={`mailto:${faculty.email}`}>
+                    <i className="fas fa-envelope"></i>
+                  </a>
+                  {faculty.phone && (
+                    <a href={`tel:${faculty.phone}`}>
+                      <i className="fas fa-phone"></i>
+                    </a>
+                  )}
+                  <a href={faculty.details} target="_blank" rel="noopener noreferrer">
+                    <i className="fas fa-info-circle"></i>
+                  </a>
+                </ContactInfo>
+              </FacultyInfo>
+            </FacultyCard>
+          ))}
+        </FacultyGrid>
+      </FacultySection>
+    </>
   )
 }
 

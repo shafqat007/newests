@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import logo from "/src/assets/images/trans.png";
 import { useEffect, useState, useRef } from 'react';
 
-// Existing styled components (unchanged except for ScrollButton adjustment)
+// Existing styled components (unchanged except for adjustments below)
 const HeroSection = styled.section`
   min-height: 100vh;
   width: 100vw;
@@ -202,11 +202,10 @@ const Button = styled(motion.button)`
   `}
 `;
 
-// Updated ScrollButton to use fixed positioning relative to the viewport
 const ScrollButton = styled(motion.button)`
-  position: fixed; /* Changed from absolute to fixed to position relative to viewport */
+  position: fixed;
   bottom: 2rem;
-  left: 5%; /* Matches the HeroSection's padding */
+  left: 5%;
   padding: 0.5rem 1.5rem;
   background: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.dark};
@@ -216,9 +215,8 @@ const ScrollButton = styled(motion.button)`
   font-weight: bold;
   cursor: pointer;
   z-index: 10;
-  transition: background 0.3s ease, opacity 0.3s ease; /* Added opacity transition for show/hide */
+  transition: background 0.3s ease, opacity 0.3s ease;
 
-  /* Add a subtle bounce animation */
   animation: bounce 2s infinite;
 
   @keyframes bounce {
@@ -245,15 +243,65 @@ const ScrollButton = styled(motion.button)`
   }
 `;
 
+// New styled component for the email icon with tooltip
+const EmailIconContainer = styled(motion.div)`
+  position: absolute;
+  bottom: 1.5rem;
+  right: 5%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const EmailIcon = styled(motion.a)`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: clamp(1.5rem, 2vw, 1.5rem);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.light};
+  }
+
+  @media (max-width: 768px) {
+    font-size: clamp(2rem, 1.5vw, 1.2rem);
+    bottom: 1.5rem;
+    right: 3%;
+  }
+`;
+
+const Tooltip = styled(motion.span)`
+  visibility: hidden;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.dark};
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 120%;
+  right: 0;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  ${EmailIcon}:hover & {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+
 const Hero = () => {
   const location = useLocation();
   const [timeLeft, setTimeLeft] = useState({});
-  const [isButtonVisible, setIsButtonVisible] = useState(true); // State to control button visibility
-  const heroRef = useRef(null); // Ref to track HeroSection
+  const [isButtonVisible, setIsButtonVisible] = useState(true);
+  const heroRef = useRef(null);
 
-  // Countdown timer logic
   useEffect(() => {
-    const deadline = new Date('April 17, 2025 00:00:00').getTime();
+    const deadline = new Date('May 8, 2025 00:00:00').getTime();
     const updateTimer = () => {
       const now = new Date().getTime();
       const distance = deadline - now;
@@ -276,12 +324,10 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Logic to show/hide the button based on HeroSection visibility
   useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
         const heroBottom = heroRef.current.getBoundingClientRect().bottom;
-        // Show button if HeroSection's bottom is still in the viewport
         setIsButtonVisible(heroBottom > 0);
       }
     };
@@ -300,7 +346,7 @@ const Hero = () => {
 
   const handleScrollForMore = () => {
     window.scrollTo({
-      top: window.innerHeight, // Scroll down by one viewport height
+      top: window.innerHeight,
       behavior: 'smooth',
     });
   };
@@ -336,7 +382,7 @@ const Hero = () => {
       </PrizeMoney>
       
       <CountdownContainer>
-        <CountdownTitle>Event 17 April to 19 April<br />Event starting in:</CountdownTitle>
+        <CountdownTitle>Event 8 May to 10 May<br />Event starting in:</CountdownTitle>
         {timeLeft.expired ? (
           <p>Event has started!</p>
         ) : (
@@ -385,15 +431,40 @@ const Hero = () => {
         </Button>
       </ButtonContainer>
 
-      {/* "Scroll for More" button fixed to viewport bottom-left */}
       <ScrollButton
         onClick={handleScrollForMore}
         initial={{ opacity: 0 }}
-        animate={{ opacity: isButtonVisible ? 1 : 0 }} // Show/hide based on visibility
+        animate={{ opacity: isButtonVisible ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
         Scroll for More
       </ScrollButton>
+
+      {/* Email icon with tooltip */}
+      <EmailIconContainer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+      >
+        <EmailIcon href="mailto:mierobolution2025@gmail.com">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            width="40"
+            height="40"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+          <Tooltip>mierobolution2025@gmail.com</Tooltip>
+        </EmailIcon>
+      </EmailIconContainer>
     </HeroSection>
   );
 };

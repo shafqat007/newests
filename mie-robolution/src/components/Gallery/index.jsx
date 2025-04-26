@@ -73,6 +73,9 @@ const galleryImages = [
   new URL('/src/assets/images/mie.jpg', import.meta.url).href,
   new URL('/src/assets/images/s5.jpg', import.meta.url).href,
   new URL('/src/assets/images/img.png', import.meta.url).href,
+  new URL('/src/assets/images/CUETAI.jpg', import.meta.url).href,
+  new URL('/src/assets/images/CUETAI2.jpg', import.meta.url).href,
+  new URL('/src/assets/images/CUETAI3.jpg', import.meta.url).href,
  
 ]
 
