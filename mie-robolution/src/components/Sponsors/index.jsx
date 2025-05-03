@@ -12,6 +12,12 @@ const partnerImages = {
   clubPartner3: new URL('/src/assets/images/chessc.png', import.meta.url).href,
   clubPartner4: new URL('/src/assets/images/cads.jpg', import.meta.url).href,
   clubPartner5: new URL('/src/assets/images/daffodil.jpg', import.meta.url).href,
+  // Add sponsor images
+  titleSponsor: new URL('/src/assets/images/cs.jpg', import.meta.url).href,
+  coSponsor: new URL('/src/assets/images/iconic.jpg', import.meta.url).href,
+  goldSponsor1: new URL('/src/assets/images/ygen.jpg', import.meta.url).href,
+  goldSponsor2: new URL('/src/assets/images/sincos.jpg', import.meta.url).href,
+  goldSponsor3: new URL('/src/assets/images/particles.jpg', import.meta.url).href,
 };
 
 // Dynamically import club images 6 to 35 (including the new 28.png)
@@ -64,6 +70,14 @@ const SponsorCard = styled(motion.div)`
     color: ${({ theme }) => theme.colors.primary};
     margin-top: 0.5rem;
     font-style: italic;
+  }
+
+  img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border-radius: 10px;
   }
 `;
 
@@ -270,9 +284,30 @@ const Sponsors = () => {
   const [clubIndex, setClubIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Updated sponsors with actual sponsors
   const sponsorCategories = {
-    title: [{ name: "Coming Soon!", status: "Revealing Soon" }],
-    platinum: [{ name: "Coming Soon!", status: "Revealing Soon" }],
+    title: [{ 
+      name: "CS LAB", 
+      image: partnerImages.titleSponsor 
+    }],
+    co: [{ 
+      name: "Iconic", 
+      image: partnerImages.coSponsor 
+    }],
+    gold: [
+      { 
+        name: "Ygen", 
+        image: partnerImages.goldSponsor1 
+      },
+      { 
+        name: "Sincos", 
+        image: partnerImages.goldSponsor2 
+      },
+      { 
+        name: "Particles Bangladesh", 
+        image: partnerImages.goldSponsor3 
+      }
+    ],
   };
 
   const partnerCategories = {
@@ -436,25 +471,62 @@ const Sponsors = () => {
       <h2>Our Sponsors & Partners</h2>
 
       <SponsorCategories>
-        {Object.entries(sponsorCategories).map(([category, sponsors]) => (
-          <div key={category}>
-            <CategoryTitle>{category.toUpperCase()} SPONSORS</CategoryTitle>
-            <SponsorsGrid>
-              {sponsors.map((sponsor, index) => (
-                <SponsorCard
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <h4>{sponsor.name}</h4>
-                  {sponsor.status && <p>{sponsor.status}</p>}
-                </SponsorCard>
-              ))}
-            </SponsorsGrid>
-          </div>
-        ))}
+        {/* Title Sponsor */}
+        <div>
+          <CategoryTitle>TITLE SPONSOR</CategoryTitle>
+          <SponsorsGrid>
+            {sponsorCategories.title.map((sponsor, index) => (
+              <SponsorCard
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <img src={sponsor.image} alt={sponsor.name} />
+                <h4>{sponsor.name}</h4>
+              </SponsorCard>
+            ))}
+          </SponsorsGrid>
+        </div>
+
+        {/* Co-Sponsor */}
+        <div>
+          <CategoryTitle>CO-SPONSOR</CategoryTitle>
+          <SponsorsGrid>
+            {sponsorCategories.co.map((sponsor, index) => (
+              <SponsorCard
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <img src={sponsor.image} alt={sponsor.name} />
+                <h4>{sponsor.name}</h4>
+              </SponsorCard>
+            ))}
+          </SponsorsGrid>
+        </div>
+
+        {/* Gold Sponsors */}
+        <div>
+          <CategoryTitle>GOLD SPONSORS</CategoryTitle>
+          <SponsorsGrid>
+            {sponsorCategories.gold.map((sponsor, index) => (
+              <SponsorCard
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <img src={sponsor.image} alt={sponsor.name} />
+                <h4>{sponsor.name}</h4>
+              </SponsorCard>
+            ))}
+          </SponsorsGrid>
+        </div>
 
         <div>
           <CategoryTitle>SOCIAL MEDIA PARTNERS</CategoryTitle>

@@ -461,7 +461,7 @@ const events = [
     title: 'Chess Competition',
     description: 'Strategic battles of minds [ Only for CUETian ]',
     registerLink: 'https://forms.gle/E9fwJiYcDQCC9u34A',
-    rulebookLink: 'https://drive.google.com/file/d/1F_U7akF6gmUwgOHXdQOxlloHm5TbHIxl/view?usp=drive_link',
+    rulebookLink: 'https://drive.google.com/file/d/1m33NLcG10QpJ7BkQJKRmtZ5g3qFrI5PK/view?usp=sharing',
     fullDescription:
       'Test your strategic thinking in our chess tournament. The competition will follow standard chess rules with time controls appropriate for all skill levels.',
     date: 'May 10, 2025',
